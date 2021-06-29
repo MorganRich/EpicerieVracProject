@@ -1,4 +1,4 @@
-package fr.epicerie_vrac_projet.epicerie_vrac_projet_core;
+package fr.epicerie_vrac_projet_core;
 
 /**
  * Hello world!
