@@ -1,10 +1,21 @@
 package fr.epicerie_vrac_projet_core.models;
 
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Article {
+	@EqualsAndHashCode.Include
 	private int id;
 	private String reference;
 	private String nom;
