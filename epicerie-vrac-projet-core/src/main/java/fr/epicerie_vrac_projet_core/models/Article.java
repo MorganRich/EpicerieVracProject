@@ -13,6 +13,7 @@ public class Article {
 	private boolean bio;
 	private String lieuDeProduction;
 	private double prixUnitaire;
+	private UniteMesure uniteMesure;
 	private int pourcentagePromo;
 	private int quantiteEnStock;
 	private int nombreDeConsultation;
