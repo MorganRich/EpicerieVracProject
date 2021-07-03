@@ -2,6 +2,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/eclipse,java,maven,windows,linux,macos,intellij,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,java,maven,windows,linux,macos,intellij,visualstudiocode
 
+**/application.properties
+
 ### Eclipse ###
 .metadata
 bin/
