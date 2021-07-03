@@ -1,13 +1,14 @@
 package fr.epicerie_vrac_projet_core;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-    }
+import org.hibernate.Session;
+
+import fr.epicerie_vrac_projet_core.utils.HibernateUtil;
+
+public class App {
+	public static void main(String[] args) {
+
+		try (Session s = HibernateUtil.getSessionFactory().openSession()) {
+
+		}
+	}
 }
