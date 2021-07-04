@@ -17,7 +17,7 @@ public class GenericRepository<T> {
 	}
 	
 	public Collection<T> findAll(Session s) {
-		return s.createQuery("from T", clazz).getResultList();
+		return s.createQuery("from " + clazz.getName(), clazz).getResultList();
 	}
 	
 	public Collection<T> findAll() {
@@ -94,7 +94,7 @@ public class GenericRepository<T> {
 		s.getTransaction().commit();
 	}
 	
-	public void delete(int id) {
+	public void deleteById(int id) {
 		try (Session s = HibernateUtil.getSessionFactory().openSession()) {
 			deleteById(id, s);
 		}

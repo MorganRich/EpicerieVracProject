@@ -17,10 +17,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString()
+@ToString(onlyExplicitlyIncluded = true, callSuper = true)
 @Entity
 public class Client extends Personne {
 	
+	@ToString.Include
 	private String motDePasse;
 	
 	@OneToOne(mappedBy = "client")

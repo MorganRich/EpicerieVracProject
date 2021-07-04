@@ -20,7 +20,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString()
+@ToString(onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 public class Article {
@@ -28,21 +28,41 @@ public class Article {
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue
+	@ToString.Include
 	private int id;
 	
+	@ToString.Include
 	private String reference;
+	
+	@ToString.Include
 	private String nom;
+	
+	@ToString.Include
 	private String image;
+	
+	@ToString.Include
 	private String description;
+	
+	@ToString.Include
 	private boolean bio;
+	
+	@ToString.Include
 	private String lieuDeProduction;
+	
+	@ToString.Include
 	private double prixUnitaire;
 	
 	@Enumerated(EnumType.STRING)
+	@ToString.Include
 	private UniteMesure uniteMesure;
 	
+	@ToString.Include
 	private int pourcentagePromo;
+	
+	@ToString.Include
 	private int quantiteEnStock;
+	
+	@ToString.Include
 	private int nombreDeConsultation;
 	
 	@ManyToMany(mappedBy = "articles")
