@@ -9,6 +9,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Where;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,11 +27,14 @@ public class Client extends Personne {
 	private String motDePasse;
 	
 	@OneToOne(mappedBy = "client")
+	@Where(clause = "DTYPE = 'Panier'")
 	private Panier panier;
 	
 	@OneToMany(mappedBy = "client")
+	@Where(clause = "DTYPE = 'Commande'")
 	private Set<Commande> commandes = new TreeSet<>();
 	
 	@ManyToMany
+	@ToString.Exclude
 	private Set<Article> favoris = new HashSet<>();
 }

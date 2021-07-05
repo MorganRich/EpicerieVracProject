@@ -11,7 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString()
+@ToString(callSuper = true)
 @Entity
 public class Panier extends Achat {
 	

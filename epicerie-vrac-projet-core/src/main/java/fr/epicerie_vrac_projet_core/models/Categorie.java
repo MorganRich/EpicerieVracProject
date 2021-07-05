@@ -32,11 +32,13 @@ public class Categorie {
 	private String nom;
 	
 	@ManyToOne
+	@ToString.Exclude
 	private Categorie surCategorie;
 	
 	@OneToMany(mappedBy ="surCategorie")
 	private Set<Categorie> sousCategorie = new TreeSet<>();
-	
+
 	@ManyToMany
 	private Set<Article> articles = new TreeSet<>();
+
 }

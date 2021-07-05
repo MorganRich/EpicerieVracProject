@@ -14,7 +14,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString()
+@ToString(callSuper = true)
 @Entity
 public class Commande extends Achat {
 	

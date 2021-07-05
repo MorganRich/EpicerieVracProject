@@ -19,7 +19,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString(onlyExplicitlyIncluded = true)
+@ToString()
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -28,22 +28,18 @@ public abstract class Personne {
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue
-	@ToString.Include
 	private int id;
 	
-	@ToString.Include
 	private String nom;
 	
-	@ToString.Include
 	private String prenom;
 	
-	@ToString.Include
 	private String email;
 	
-	@ToString.Include
 	private String numeroTelephone;
 	
 	@OneToMany(mappedBy = "personne")
+	@ToString.Exclude
 	private Set<Adresse> adresses = new HashSet<>();
 	
 }
