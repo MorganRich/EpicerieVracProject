@@ -22,6 +22,7 @@ public class Commande extends Achat {
 	private LocalDate dateCommande;
 	
 	@ManyToOne
+	@ToString.Exclude
 	private Client client;
 	
 	@OneToOne(mappedBy = "commande")

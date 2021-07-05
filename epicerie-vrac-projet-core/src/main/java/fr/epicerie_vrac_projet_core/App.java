@@ -2,9 +2,8 @@ package fr.epicerie_vrac_projet_core;
 
 import org.hibernate.Session;
 
+import fr.epicerie_vrac_projet_core.models.Article;
 import fr.epicerie_vrac_projet_core.models.Client;
-import fr.epicerie_vrac_projet_core.models.Commande;
-import fr.epicerie_vrac_projet_core.models.Panier;
 import fr.epicerie_vrac_projet_core.repositories.ArticleRepository;
 import fr.epicerie_vrac_projet_core.repositories.CategorieRepository;
 import fr.epicerie_vrac_projet_core.repositories.ClientRepository;
@@ -38,8 +37,8 @@ public class App {
 		car.save(c4);*/
 		
 		try (Session s = HibernateUtil.getSessionFactory().openSession()) {
-			/*Article a1 = ar.findById(5, s).get();
-			Article a2 = ar.findById(6, s).get();
+			Article a1 = ar.findById(5, s).get();
+			/*Article a2 = ar.findById(6, s).get();
 			Article a3 = ar.findById(9, s).get();*/
 			//Categorie c1 = car.findById(10, s).get();
 			//c1.getSousCategorie().forEach(c -> System.out.println(c.getNom()));
@@ -66,8 +65,11 @@ public class App {
 			co.setNumeroCommande(789123);
 			co.setPrixTotal(100);
 			cor.save(co);*/
-			System.out.println(c.getCommandes());
-			System.out.println(c.getPanier());
+			//System.out.println(c.getCommandes());
+			//System.out.println(c.getPanier());
+			//c.getFavoris().add(a1);
+			//cr.update(c, s);
+			System.out.println(c);
 		}
 		
 		

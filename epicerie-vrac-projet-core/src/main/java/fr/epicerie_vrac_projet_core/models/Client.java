@@ -19,11 +19,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString(onlyExplicitlyIncluded = true, callSuper = true)
+@ToString(callSuper = true)
 @Entity
 public class Client extends Personne {
 	
-	@ToString.Include
 	private String motDePasse;
 	
 	@OneToOne(mappedBy = "client")
@@ -35,6 +34,5 @@ public class Client extends Personne {
 	private Set<Commande> commandes = new TreeSet<>();
 	
 	@ManyToMany
-	@ToString.Exclude
 	private Set<Article> favoris = new HashSet<>();
 }
