@@ -62,7 +62,6 @@ public class Article {
 	private Set<Fournisseur> fournisseurs = new HashSet<>();
 	
 	@OneToMany(mappedBy ="id.article")
-	@ToString.Exclude
 	private Set<LigneAchat> achats = new HashSet<>();
 
 	public void calculerPrixTTC() {

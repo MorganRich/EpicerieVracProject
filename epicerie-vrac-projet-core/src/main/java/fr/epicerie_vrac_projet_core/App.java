@@ -4,11 +4,11 @@ import org.hibernate.Session;
 
 import fr.epicerie_vrac_projet_core.models.Article;
 import fr.epicerie_vrac_projet_core.models.Client;
+import fr.epicerie_vrac_projet_core.models.Panier;
+import fr.epicerie_vrac_projet_core.repositories.AchatRepository;
 import fr.epicerie_vrac_projet_core.repositories.ArticleRepository;
 import fr.epicerie_vrac_projet_core.repositories.CategorieRepository;
 import fr.epicerie_vrac_projet_core.repositories.ClientRepository;
-import fr.epicerie_vrac_projet_core.repositories.CommandeRepository;
-import fr.epicerie_vrac_projet_core.repositories.PanierRepository;
 import fr.epicerie_vrac_projet_core.utils.HibernateUtil;
 
 public class App {
@@ -17,8 +17,7 @@ public class App {
 		ClientRepository cr = new ClientRepository();
 		ArticleRepository ar = new ArticleRepository();
 		CategorieRepository car = new CategorieRepository();
-		PanierRepository pr = new PanierRepository();
-		CommandeRepository cor = new CommandeRepository();
+		AchatRepository acr = new AchatRepository();
 
 		/*Categorie c1 = new Categorie();
 		c1.setNom("Alimentaire");
@@ -37,12 +36,12 @@ public class App {
 		car.save(c4);*/
 		
 		try (Session s = HibernateUtil.getSessionFactory().openSession()) {
-			Article a1 = ar.findById(5, s).get();
-			/*Article a2 = ar.findById(6, s).get();
-			Article a3 = ar.findById(9, s).get();*/
+			//Article a1 = ar.findById(5, s).get();
+			//Article a2 = ar.findById(6, s).get();
+			Article a3 = ar.findById(9, s).get();
 			//Categorie c1 = car.findById(10, s).get();
 			//c1.getSousCategorie().forEach(c -> System.out.println(c.getNom()));
-			//System.out.println(c1);
+			//a3.getAchats().forEach(ligne -> System.out.println(ligne.getId().getAchat().getId() + " " + ligne.getId().getArticle().getId()));
 			//Categorie c2 = car.findById(11, s).get();
 			/*c1.getArticles().add(a1);
 			c1.getArticles().add(a2);
@@ -56,11 +55,35 @@ public class App {
 			car.update(c2, s);*/
 			//System.out.println(car.findById(10, s));
 			
-			Client c = cr.findById(8, s).get();
+			/*Client c = new Client();
+			c.setNom("Richard");
+			c.setPrenom("Morgan");
+			c.setEmail("mr@gmail.com");
+			c.setMotDePasse("mr");
+			c.setNumeroTelephone("0625...");
+
+			cr.save(c);*/
+			
+			Client c = cr.findById(18, s).get();
+			System.out.println(c.getPanier());
+			//acr.ajouterArticleAuPanier(a3, c.getPanier(), 50, s);
+			System.out.println(c.getPanier().getArticles());
+			
+			/*LigneAchat.LigneAchatId laId = new LigneAchat.LigneAchatId();
+			laId.setAchat(acr.findById(15, s).get());
+			laId.setArticle(a3);
+			LigneAchat la = new LigneAchat();
+			la.setId(laId);
+			la.setQuantite(10);
+			
+			lar.save(la);*/
+			
+			//System.out.println(acr.findById(15, s).get());
+			//c2.getPanier().getArticles().add(la);
 			/*Panier p = new Panier();
 			p.setClient(c);
-			pr.save(p);
-			Commande co = new Commande();
+			acr.save(p);*/
+			/*Commande co = new Commande();
 			co.setClient(c);
 			co.setNumeroCommande(789123);
 			co.setPrixTotal(100);
@@ -69,29 +92,22 @@ public class App {
 			//System.out.println(c.getPanier());
 			//c.getFavoris().add(a1);
 			//cr.update(c, s);
-			System.out.println(c);
+			
+			//System.out.println(c2.getPanier().getArticles());
+			//c2.getPanier().getArticles().forEach(ligne -> System.out.println(ligne.getId().getAchat().getId() + " " + ligne.getId().getArticle().getId()));
+			
 		}
 		
-		
-		/*Client c = new Client();
-		c.setNom("Villard");
-		c.setPrenom("Marion");
-		c.setEmail("mv@gmail.com");
-		c.setMotDePasse("mv");
-		c.setNumeroTelephone("0650...");
-
-		cr.save(c);
-		
-		Article a = new Article();
+		/*Article a = new Article();
 		a.setReference("789123");
 		a.setNom("Haricot");
 		a.setBio(true);
 		a.setPrixUnitaire(4);
-		a.setUniteMesure(UniteMesure.KILO);
+		a.setUniteMesure(UniteMesure.KILO);*/
 
-		ar.save(a);
+		//ar.save(a);
 		
-		cr.findAll().forEach(System.out::println);
+		/*cr.findAll().forEach(System.out::println);
 		ar.findAll().forEach(System.out::println);*/
 		
 		//Article a = ar.findById(3).get();

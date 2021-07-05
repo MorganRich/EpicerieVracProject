@@ -33,7 +33,6 @@ public abstract class Achat {
 	private double prixTotal;
 	
 	@OneToMany(mappedBy = "id.achat")
-	@ToString.Exclude
 	private Set<LigneAchat> articles = new LinkedHashSet<>();
 	
 	public void calculerPrixTotalTTC() {
