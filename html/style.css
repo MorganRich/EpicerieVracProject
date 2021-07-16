@@ -1,0 +1,24 @@
+body {
+    font-family: sans-serif;
+}
+#nav {
+    background-color: #323E40;
+}
+
+.logo, .logo:hover {
+    font-family: 'Harlow';
+    color: #F2AB27;
+}
+
+.nav-link, .navbar-toggler {
+    color: #EEEEEE;
+}
+
+.nav-link:hover {
+    color: #F2AB27;
+}
+
+.btn-outline-light:hover {
+    color: #EEEEEE;
+    background-color: #F2AB27;
+}
