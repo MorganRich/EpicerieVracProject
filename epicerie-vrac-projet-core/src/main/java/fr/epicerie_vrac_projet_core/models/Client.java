@@ -23,7 +23,7 @@ import lombok.ToString;
 @Entity
 public class Client extends Personne {
 	
-	private String motDePasse;
+	private String password;
 	
 	@OneToOne(mappedBy = "client")
 	@Where(clause = "DTYPE = 'Panier'")
