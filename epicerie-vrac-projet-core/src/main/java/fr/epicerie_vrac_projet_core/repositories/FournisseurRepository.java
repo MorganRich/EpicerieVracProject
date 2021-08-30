@@ -1,11 +1,11 @@
 package fr.epicerie_vrac_projet_core.repositories;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import fr.epicerie_vrac_projet_core.models.Fournisseur;
 
-public class FournisseurRepository extends GenericRepository<Fournisseur> {
-
-	public FournisseurRepository() {
-		super(Fournisseur.class);
-	}
+@Repository
+public interface FournisseurRepository extends JpaRepository<Fournisseur, Integer> {
 
 }
