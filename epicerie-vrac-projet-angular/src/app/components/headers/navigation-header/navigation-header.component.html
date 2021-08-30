@@ -1,0 +1,4 @@
+<mat-toolbar>
+	<span>{{route[0]}}</span>
+	<span *ngFor="let f of route; let last = last">{{f}}{{!last ? '>' : ''}}</span> 
+</mat-toolbar>

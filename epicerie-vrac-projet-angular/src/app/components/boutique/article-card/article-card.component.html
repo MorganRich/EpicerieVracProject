@@ -1,0 +1,16 @@
+<mat-card class="card">
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-header>
+        <mat-card-title>{{article.nom}}</mat-card-title>
+        <mat-card-subtitle>{{article.prixUnitaire}} € / {{article.uniteMesure}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+        <button mat-button>
+            <mat-icon>shopping_cart</mat-icon> Ajouter au panier
+        </button>
+        <button mat-button>
+            <mat-icon>remove_red_eye</mat-icon> Quick View
+        </button>
+    </mat-card-actions>
+</mat-card>

@@ -1,0 +1,11 @@
+<mat-list-item>
+    <img matListAvatar [routerLink]="'/article/' + article.id" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <a mat-line [routerLink]="'/article/' + article.id"><strong>{{article.nom}}</strong></a>
+    <div mat-line>{{article.prixUnitaire}} € / {{article.uniteMesure}}</div>
+    <button mat-button>
+        <mat-icon>shopping_cart</mat-icon> Ajouter au panier
+    </button>
+    <button mat-button>
+        <mat-icon>remove_red_eye</mat-icon> Quick View
+    </button>
+</mat-list-item>

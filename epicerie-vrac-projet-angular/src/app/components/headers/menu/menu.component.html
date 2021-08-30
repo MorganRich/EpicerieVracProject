@@ -1,0 +1,44 @@
+<mat-toolbar>
+    <h1>Du Sens en Vrac</h1>
+    <mat-nav-list>
+        <a mat-list-item routerLink="/">Accueil</a>
+        <a mat-list-item routerLink="/boutique" [matMenuTriggerFor]="categories">
+            Boutique <mat-icon>keyboard_arrow_down</mat-icon>
+        </a>
+        <mat-menu #categories="matMenu">
+            <a mat-menu-item [matMenuTriggerFor]="alimentaire">Alimentaire</a>
+            <a mat-menu-item [matMenuTriggerFor]="hygieneCosmetique">Hygiène et cosmétique</a>
+            <a mat-menu-item [matMenuTriggerFor]="hygieneMaison">Hygiène de la maison</a>
+            <a mat-menu-item [matMenuTriggerFor]="accessoire">Accessoire Zéro déchet</a>
+        </mat-menu>
+        <mat-menu #alimentaire="matMenu">
+            <a mat-menu-item>Epicerie salé</a>
+            <a mat-menu-item>Epicerie sucré</a>
+            <a mat-menu-item>Boisson</a>
+        </mat-menu>
+        <mat-menu #hygieneCosmetique="matMenu">
+            <a mat-menu-item>Corps et visage</a>
+            <a mat-menu-item>Cheveux</a>
+        </mat-menu>
+        <mat-menu #hygieneMaison="matMenu">
+            <a mat-menu-item>Bicarbonate</a>
+            <a mat-menu-item>Savon</a>
+        </mat-menu>
+        <mat-menu #accessoire="matMenu">
+            <a mat-menu-item>Nomade</a>
+            <a mat-menu-item>Cuisine</a>
+            <a mat-menu-item>Salle de bain</a>
+            <a mat-menu-item>Hygiène féminin</a>
+            <a mat-menu-item>Hygiène homme</a>
+        </mat-menu>
+        <a mat-list-item routerLink="/">Nous trouver</a>
+        <a mat-list-item routerLink="/">Blog</a>
+        <a mat-list-item routerLink="/">Contact</a>
+        <a mat-list-item routerLink="/panier">
+            <mat-icon [matBadge]="badgeValue == 0 ? '' : badgeValue">shopping_cart</mat-icon>
+        </a>
+        <a mat-list-item routerLink="/search">
+            <mat-icon>search</mat-icon>
+        </a>
+    </mat-nav-list>
+</mat-toolbar>

@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+}
+
+img {
+    margin-right: 10px;
+    width: 32px;
+    height: 32px;
+}
+
+img:hover {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.quantite {
+    margin-left: 20px;
+    margin-right: 20px;
+}

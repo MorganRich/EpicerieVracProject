@@ -1,0 +1,29 @@
+<p *ngIf="quantiteMax" class="alert alert-danger mt-2" role="alert">
+    Vous ne pouvez pas ajouter cette quantité dans le panier
+    — nous en avons {{article.quantiteEnStock}} en stock et vous en avez déjà {{quantitePanier}} dans votre panier.
+</p>
+<p *ngIf="quantitePanier > 0 && quantitePanier < article.quantiteEnStock" class="alert alert-success mt-2" role="alert">
+    <mat-icon>check_circle_outline</mat-icon> {{quantite}}x "{{article.nom}}" ont été ajoutés à votre panier.  
+</p>
+<div class="affichage">
+    <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <div class="details">
+        <h1>{{article.nom}}</h1>
+        <p>{{article.prixUnitaire}} € / {{article.uniteMesure}} - {{article.quantiteEnStock}} en stock</p>
+        <mat-divider></mat-divider>
+        <p>{{article.description}}</p>
+        <p *ngIf="article.bio"><strong>BIO</strong></p>
+        <div class="action">
+            <button mat-raised-button (click)="onDownQuantite()">
+                <mat-icon>remove</mat-icon>
+            </button>
+            <span class="quantite">{{quantite}}</span>
+            <button mat-raised-button (click)="onUpQuantite()">
+                <mat-icon>add</mat-icon>
+            </button>
+            <button mat-raised-button color="primary" (click)="onAddPanier()">Ajouter au panier</button>
+        </div>
+        <p>Catégories: <span *ngFor="let c of article.categories; let last = last">{{c.nom}}{{!last ? ', ' : ''}}</span>
+        </p>
+    </div>
+</div>

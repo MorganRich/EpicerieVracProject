@@ -1,0 +1,11 @@
+.boutique {
+    display: flex;
+}
+
+.display {
+    margin-top: 10px;
+}
+
+mat-button-toggle-group {
+    margin: 5px;
+}

@@ -1,0 +1,11 @@
+mat-nav-list {
+    display: flex;
+}
+
+mat-toolbar {
+    display: flex;
+    justify-content: space-around;
+    position: sticky;
+    top: 0px;
+    z-index: 100;
+}
