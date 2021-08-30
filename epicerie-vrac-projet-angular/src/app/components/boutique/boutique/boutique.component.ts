@@ -47,12 +47,12 @@ export class BoutiqueComponent implements OnInit {
   onDisplayChange(d: string): void {
     this.display = d;
     console.log(this.display)
-    // localStorage.setItem("display", d);
+    localStorage.setItem("display", d);
   }
 
   onTriChange(d: string): void {
     this.tri = d;
-    // localStorage.setItem("tri", d);
+    localStorage.setItem("tri", d);
   }
 
 }

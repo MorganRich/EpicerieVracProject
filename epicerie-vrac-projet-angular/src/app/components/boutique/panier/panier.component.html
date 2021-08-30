@@ -11,7 +11,7 @@
     </ng-container>
     <ng-container matColumnDef="prix">
         <th mat-header-cell *matHeaderCellDef> Prix </th>
-        <td mat-cell *matCellDef="let la"> {{la.article.prixUnitaire}} € </td>
+        <td mat-cell *matCellDef="let la"> {{la.article.prixUnitaire | number:'1.2'}} € </td>
         <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
     <ng-container matColumnDef="quantite">
@@ -29,13 +29,13 @@
     </ng-container>
     <ng-container matColumnDef="sousTotal">
         <th mat-header-cell *matHeaderCellDef> Sous-total </th>
-        <td mat-cell *matCellDef="let la"> {{la.article.prixUnitaire * la.quantite}} € </td>
-        <td mat-footer-cell *matFooterCellDef> {{panier.prixTotal | currency:'EUR':true}} </td>
+        <td mat-cell *matCellDef="let la"> {{la.article.prixUnitaire * la.quantite | number:'1.2'}} € </td>
+        <td mat-footer-cell *matFooterCellDef> {{panier.prixTotal | number:'1.2'}} </td>
     </ng-container>
     <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element; let i = index">
-            <button mat-icon-button (click)="onDelete(i)"><mat-icon>close</mat-icon></button>
+            <button mat-icon-button (click)="onSupprimer(i)"><mat-icon>close</mat-icon></button>
         </td>
         <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>

@@ -1,30 +1,36 @@
-<div class="display">
-    <mat-form-field appearance="outline">
-        <mat-select [(value)]="selectedTriProduit">
-            <mat-option *ngFor="let tri of triProduits" [value]="tri.value">
-                {{tri.viewValue}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+<mat-form-field appearance="outline">
+    <mat-select [(value)]="selectedTriProduit">
+        <mat-option *ngFor="let tri of triProduits" [value]="tri.value">
+            {{tri.viewValue}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
 
-    <mat-button-toggle-group #t="matButtonToggleGroup" [value]="tri" (change)="onTriChange(t.value)">
-        <mat-button-toggle value="up"><mat-icon>arrow_upward</mat-icon></mat-button-toggle>
-        <mat-button-toggle value="down"><mat-icon>arrow_downward</mat-icon></mat-button-toggle>
-    </mat-button-toggle-group>
+<mat-button-toggle-group #t="matButtonToggleGroup" [value]="tri" (change)="onTriChange(t.value)">
+    <mat-button-toggle value="up">
+        <mat-icon>arrow_upward</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="down">
+        <mat-icon>arrow_downward</mat-icon>
+    </mat-button-toggle>
+</mat-button-toggle-group>
 
-    <mat-form-field appearance="outline">
-        <mat-select [(value)]="selectedNombreProduit">
-            <mat-option *ngFor="let nb of nbProduits" [value]="nb.value">
-                {{nb.viewValue}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+<mat-form-field appearance="outline">
+    <mat-select [(value)]="selectedNombreProduit">
+        <mat-option *ngFor="let nb of nbProduits" [value]="nb.value">
+            {{nb.viewValue}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
 
-    <mat-button-toggle-group #d="matButtonToggleGroup" [value]="display" (change)="onDisplayChange(d.value)">
-        <mat-button-toggle value="grid"><mat-icon>grid_on</mat-icon></mat-button-toggle>
-        <mat-button-toggle value="list"><mat-icon>list</mat-icon></mat-button-toggle>
-    </mat-button-toggle-group>
-</div>
+<mat-button-toggle-group #d="matButtonToggleGroup" [value]="display" (change)="onDisplayChange(d.value)">
+    <mat-button-toggle value="grid">
+        <mat-icon>grid_on</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="list">
+        <mat-icon>list</mat-icon>
+    </mat-button-toggle>
+</mat-button-toggle-group>
 
 
 <div class="boutique" *ngIf="display == 'grid'">

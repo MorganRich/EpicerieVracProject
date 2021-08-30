@@ -19,7 +19,7 @@ export class GestionPanierService {
   constructor() { }
 
   ajouterArticle(a: Article, quantite: number): void {
-    let index = this.panier.articles.findIndex(la => la.article === a);
+    let index = this.panier.articles.findIndex(la => la.article.id == a.id);
     if (index == -1) {
       let ajout: LigneAchat = new LigneAchat();
       ajout.article = a;
@@ -39,16 +39,19 @@ export class GestionPanierService {
         this.quantiteMax.next(true);
       }
     }
+    this.calculerPrixTotal();
   }
 
   supprimerArticle(index: number): void {
     this.panier.articles.splice(index, 1);
+    this.calculerPrixTotal();
     this.panierSubject.next(this.panier);
   }
 
   augmenterQuantite(index: number): void {
     if (this.panier.articles[index].quantite < this.panier.articles[index].article.quantiteEnStock) {
       this.panier.articles[index].quantite++;
+      this.calculerPrixTotal();
       this.panierSubject.next(this.panier);
     }
   }
@@ -56,11 +59,12 @@ export class GestionPanierService {
   diminuerQuantite(index: number): void {
     if (this.panier.articles[index].quantite > 1) {
       this.panier.articles[index].quantite--;
+      this.calculerPrixTotal();
       this.panierSubject.next(this.panier);
     }
   }
 
-  calculerPrixTotal() {
+  calculerPrixTotal(): void {
     this.panier.prixTotal = this.panier.articles.map(la => la.article.prixUnitaire * la.quantite)
                                                 .reduce((acc, value) => acc + value, 0);
   }

@@ -18,7 +18,7 @@ export class PanierComponent implements OnInit {
     this._gps.panierSubject.subscribe(p => this.panier = p);
   }
 
-  onDelete(index: number): void {
+  onSupprimer(index: number): void {
     this._gps.supprimerArticle(index);
   }
 
