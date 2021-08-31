@@ -1,0 +1,142 @@
+<mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-icon>check_circle_outline</mat-icon> Déjà client ? Cliquez ici pour vous connecter
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+            Si vous avez déjà commandé avec nous auparavant, veuillez saisir vos coordonnées ci-dessous. Si vous êtes un
+            nouveau client, veuillez renseigner la section facturation.
+        </mat-panel-description>
+        <div class="connexionForm">
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" [formControl]="email" required>
+                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Mot de passe</mat-label>
+                <input matInput type="password" [formControl]="password" required>
+                <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="actionForm">
+            <button mat-raised-button color="primary" (click)="onConnexion()">Connexion</button>
+            <mat-checkbox [(ngModel)]="seSouvenir" name="seSouvenir">Se souvenir de moi</mat-checkbox>
+            <a mat-flat-button>Mot de passe perdu ?</a>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>
+
+<div class="formulaires">
+    <form class="formulaire">
+        <h1>Détails de facturation</h1>
+        <mat-divider></mat-divider>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Prenom</mat-label>
+                <input matInput type="text" [(ngModel)]="client.prenom" name="client.prenom" required>
+            </mat-form-field>
+            <mat-form-field class="nom" appearance="fill">
+                <mat-label>Nom</mat-label>
+                <input matInput type="text" [(ngModel)]="client.nom" name="client.nom" required>
+            </mat-form-field>
+        </div>
+        <mat-form-field appearance="fill">
+            <mat-label>Pays</mat-label>
+            <input matInput disabled value="France" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Numéro de voie</mat-label>
+            <input matInput type="number" [(ngModel)]="adresse1.numero" name="adresse1.numero" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Type de voie</mat-label>
+            <input matInput type="text" [(ngModel)]="adresse1.typeDeVoie" name="adresse1.typeDeVoie" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Complément d'adresse</mat-label>
+            <input matInput type="text" placeholder="Bâtiment, appartement... (facultatif)" [(ngModel)]="adresse1.complement" name="adresse1.complement">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Code postal</mat-label>
+            <input matInput type="text" [(ngModel)]="adresse1.codePostal" name="adresse1.codePostal" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Ville</mat-label>
+            <input matInput type="text" [(ngModel)]="adresse1.ville" name="adresse1.ville" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Téléphone</mat-label>
+            <input matInput type="text" [(ngModel)]="client.numeroTelephone" name="client.numeroTelphone" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="client.email" name="client.email" required>
+        </mat-form-field>
+        <mat-checkbox [(ngModel)]="creationCompte" name="creationCompte">Créer un compte ?</mat-checkbox>
+        <mat-form-field *ngIf="creationCompte" appearance="fill">
+            <mat-label>Créer le mot de passe du compte</mat-label>
+            <input matInput type="password" [(ngModel)]="client.password" name="client.password" required>
+        </mat-form-field>
+    </form>
+
+    <form class="formulaire">
+        <mat-checkbox [(ngModel)]="adresseDifferente" name="adresseDifferente">
+            <h1>Expédier à une adresse différente ?</h1>
+        </mat-checkbox>
+        <mat-divider></mat-divider>
+        <mat-form-field *ngIf="adresseDifferente" appearance="fill">
+            <mat-label>Pays</mat-label>
+            <input matInput disabled value="France" required>
+        </mat-form-field>
+        <mat-form-field *ngIf="adresseDifferente" appearance="fill">
+            <mat-label>Numéro de voie</mat-label>
+            <input matInput type="number" [(ngModel)]="adresse2.numero" name="adresse2.numero" required>
+        </mat-form-field>
+        <mat-form-field *ngIf="adresseDifferente" appearance="fill">
+            <mat-label>Type de voie</mat-label>
+            <input matInput type="text" [(ngModel)]="adresse2.typeDeVoie" name="adresse2.typeDeVoie" required>
+        </mat-form-field>
+        <mat-form-field *ngIf="adresseDifferente" appearance="fill">
+            <mat-label>Complément d'adresse</mat-label>
+            <input matInput type="text" placeholder="Bâtiment, appartement... (facultatif)" [(ngModel)]="adresse2.complement" name="adresse2.complement">
+        </mat-form-field>
+        <mat-form-field *ngIf="adresseDifferente" appearance="fill">
+            <mat-label>Code postal</mat-label>
+            <input matInput type="text" [(ngModel)]="adresse2.codePostal" name="adresse2.codePostal" required>
+        </mat-form-field>
+        <mat-form-field *ngIf="adresseDifferente" appearance="fill">
+            <mat-label>Ville</mat-label>
+            <input matInput type="text" [(ngModel)]="adresse2.ville" name="adresse2.ville" required>
+        </mat-form-field>
+    </form>
+</div>
+
+<mat-divider></mat-divider>
+<h1>Votre commande</h1>
+
+<table mat-table [dataSource]="client.panier.articles" class="mat-elevation-z8">
+    <ng-container matColumnDef="produit">
+        <th mat-header-cell *matHeaderCellDef> Produit </th>
+        <td mat-cell *matCellDef="let la">
+            <img matListAvatar routerLink="/article/{{la.article.id}}" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <span>{{la.article.nom}}<strong> x {{la.quantite}}</strong></span>
+        </td>
+        <td mat-footer-cell *matFooterCellDef>Total</td>
+    </ng-container>
+    <ng-container matColumnDef="sousTotal">
+        <th mat-header-cell *matHeaderCellDef> Sous-total </th>
+        <td mat-cell *matCellDef="let la"> {{la.article.prixUnitaire * la.quantite | number:'1.2'}} € </td>
+        <td mat-footer-cell *matFooterCellDef> {{client.panier.prixTotal | number:'1.2'}} €</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['produit', 'sousTotal']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['produit', 'sousTotal'];"></tr>
+    <tr mat-footer-row *matFooterRowDef="['produit', 'sousTotal']"></tr>
+</table>
+
+<div class="valider">
+    <button mat-raised-button color="primary" (click)="onCommander()">Commander</button>
+</div>

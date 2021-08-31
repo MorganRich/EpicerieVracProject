@@ -11,6 +11,11 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -26,7 +31,12 @@ import {MatTableModule} from '@angular/material/table';
     MatButtonToggleModule,
     MatSelectModule,
     MatBadgeModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule
   ],
   exports: [
     MatToolbarModule,
@@ -40,7 +50,12 @@ import {MatTableModule} from '@angular/material/table';
     MatButtonToggleModule,
     MatSelectModule,
     MatBadgeModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule
   ]
 })
 export class AppMaterialModule { }

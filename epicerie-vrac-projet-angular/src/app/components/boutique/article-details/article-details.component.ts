@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from 'src/app/models/article';
 import { ArticleService } from 'src/app/services/article.service';
@@ -18,11 +19,14 @@ export class ArticleDetailsComponent implements OnInit {
 
   constructor(private _as: ArticleService,
               private _ar: ActivatedRoute,
-              private _gps: GestionPanierService) { }
+              private _gps: GestionPanierService,
+              @Inject(MAT_DIALOG_DATA) private _data: {article : Article}) { }
 
   ngOnInit(): void {
-    this.article.id = this._ar.snapshot.params.id;
-    this._as.findById(this.article.id).subscribe(a => this.article = a);
+    // this.article.id = this._ar.snapshot.params.id;
+    // this._as.findById(this.article.id).subscribe(a => this.article = a);
+    console.log(this._data);
+    this.article = this._data.article;
     this._gps.quantiteLignePanier.subscribe(qte => this.quantitePanier = qte);
     this._gps.quantiteMax.subscribe(max => this.quantiteMax = max);
   }

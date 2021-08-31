@@ -75,6 +75,7 @@ public class Article {
 	private Set<Fournisseur> fournisseurs = new HashSet<>();
 	
 	@OneToMany(mappedBy ="id.article")
+	@JsonIgnore
 	private Set<LigneAchat> achats = new HashSet<>();
 
 }

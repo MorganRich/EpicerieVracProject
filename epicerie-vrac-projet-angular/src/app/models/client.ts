@@ -5,7 +5,7 @@ import { Personne } from "./personne";
 
 export class Client extends Personne {
     public password: string = "";
-    public panier: Panier = new Panier();
+    public panier: Panier = new Panier(this);
     public commandes: Commande[] = [];
     public favoris: Article[] = [];
 }

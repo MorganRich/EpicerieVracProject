@@ -25,12 +25,12 @@
                 <mat-icon>add</mat-icon>
             </button>
         </td>
-        <td mat-footer-cell *matFooterCellDef> Total </td>
+        <td mat-footer-cell *matFooterCellDef>Total</td>
     </ng-container>
     <ng-container matColumnDef="sousTotal">
         <th mat-header-cell *matHeaderCellDef> Sous-total </th>
         <td mat-cell *matCellDef="let la"> {{la.article.prixUnitaire * la.quantite | number:'1.2'}} € </td>
-        <td mat-footer-cell *matFooterCellDef> {{panier.prixTotal | number:'1.2'}} </td>
+        <td mat-footer-cell *matFooterCellDef> {{panier.prixTotal | number:'1.2'}} €</td>
     </ng-container>
     <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef></th>
@@ -45,4 +45,6 @@
     <tr mat-footer-row *matFooterRowDef="['produit', 'prix', 'quantite', 'sousTotal', 'action']"></tr>
 </table>
 
-<div></div>
+<div class="valider">
+    <button mat-raised-button color="primary" (click)="onCommander()">Valider la commande</button>
+</div>

@@ -6,10 +6,10 @@
     </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-actions>
-        <button mat-button>
+        <button mat-button (click)="onAjouterPanier()">
             <mat-icon>shopping_cart</mat-icon> Ajouter au panier
         </button>
-        <button mat-button>
+        <button mat-button (click)="openDialog()">
             <mat-icon>remove_red_eye</mat-icon> Quick View
         </button>
     </mat-card-actions>

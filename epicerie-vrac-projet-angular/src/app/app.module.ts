@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './app-material.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
 import { AuthenticationService } from './services/authentication.service';
@@ -16,6 +16,7 @@ import { NavigationHeaderComponent } from './components/headers/navigation-heade
 import { ArticleLineComponent } from './components/boutique/article-line/article-line.component';
 import { ArticleDetailsComponent } from './components/boutique/article-details/article-details.component';
 import { PanierComponent } from './components/boutique/panier/panier.component';
+import { CommandeComponent } from './components/boutique/commande/commande.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PanierComponent } from './components/boutique/panier/panier.component';
     NavigationHeaderComponent,
     ArticleLineComponent,
     ArticleDetailsComponent,
-    PanierComponent
+    PanierComponent,
+    CommandeComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { PanierComponent } from './components/boutique/panier/panier.component';
     BrowserAnimationsModule,
     AppMaterialModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [

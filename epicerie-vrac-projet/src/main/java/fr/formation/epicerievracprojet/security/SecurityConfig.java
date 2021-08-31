@@ -17,7 +17,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
+import fr.formation.epicerievracprojet.models.Admin;
 import fr.formation.epicerievracprojet.models.Client;
+import fr.formation.epicerievracprojet.models.Utilisateur;
+import fr.formation.epicerievracprojet.repositories.UtilisateurRepository;
+import fr.formation.epicerievracprojet.services.AdminService;
 import fr.formation.epicerievracprojet.services.ClientService;
 
 @Configuration
@@ -27,6 +31,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private ClientService cs;
+	
+	@Autowired
+	private AdminService as;
+	
+	@Autowired
+	private UtilisateurRepository ur;
 	
 	private final RequestMatcher ALLOWED_URL = new OrRequestMatcher(
 			new AntPathRequestMatcher("/clients", "POST"),
@@ -43,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	private final RequestMatcher ADMIN_URL = new OrRequestMatcher(
 			new AntPathRequestMatcher("/clients", "GET"),
+			new AntPathRequestMatcher("/clients/admin", "POST"),
 			new AntPathRequestMatcher("/articles", "POST"),
 			new AntPathRequestMatcher("/articles/**", "PUT"),
 			new AntPathRequestMatcher("/articles/**", "DELETE"),
@@ -53,8 +64,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public UserDetailsService userDetailsService() {
 		return (email) -> {
-			Client c = cs.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("aucun client avec l'email " + email));
-			return new User(c.getEmail(), c.getPassword(), AuthorityUtils.createAuthorityList("ROLE_ADMIN"));
+			Utilisateur u = ur.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("aucun utilisateur avec l'email " + email));
+			if (u.getRole() == "ROLE_CLIENT") {
+				Client c = cs.findById(u.getId()).get();
+				return new User(c.getEmail(), c.getPassword(), AuthorityUtils.createAuthorityList(c.getRole()));
+			}
+			else {
+				Admin a = as.findById(u.getId()).get();
+				return new User(a.getEmail(), a.getPassword(), AuthorityUtils.createAuthorityList(a.getRole()));
+			}
 		};
 	}
 	

@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.formation.epicerievracprojet.models.Admin;
 import fr.formation.epicerievracprojet.models.Client;
+import fr.formation.epicerievracprojet.services.AdminService;
 import fr.formation.epicerievracprojet.services.ClientService;
 
 @RestController
@@ -21,6 +23,9 @@ public class ClientController {
 
 	@Autowired
 	private ClientService cs;
+	
+	@Autowired
+	private AdminService as;
 	
 	@GetMapping("")
 	public Collection<Client> findAll() {
@@ -35,6 +40,11 @@ public class ClientController {
 	@PostMapping("")
 	public void save(@RequestBody Client c) {
 		cs.save(c);
+	}
+	
+	@PostMapping("/admin")
+	public void save(@RequestBody Admin a) {
+		as.save(a);
 	}
 	
 	@PutMapping("/{id}")

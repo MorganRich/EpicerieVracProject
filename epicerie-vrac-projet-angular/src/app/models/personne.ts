@@ -1,10 +1,9 @@
 import { Adresse } from "./adresse";
+import { Utilisateur } from "./utilisateur";
 
-export abstract class Personne {
-    public id: number = 0;
+export abstract class Personne extends Utilisateur {
     public nom: string = "";
     public prenom: string = "";
-    public email: string = "";
     public numeroTelephone: string = "";
     public adresses: Adresse[] = [];
 }
