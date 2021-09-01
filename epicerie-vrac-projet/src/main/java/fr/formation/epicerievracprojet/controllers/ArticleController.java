@@ -24,6 +24,7 @@ public class ArticleController {
 	
 	@GetMapping("")
 	public Collection<Article> findAll() {
+		System.out.println("controler");
 		return as.findAll();
 	}
 	

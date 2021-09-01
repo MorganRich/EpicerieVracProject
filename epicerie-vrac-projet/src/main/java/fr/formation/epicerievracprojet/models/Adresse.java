@@ -7,6 +7,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +28,6 @@ public class Adresse {
 	@GeneratedValue
 	private int id;
 	
-	@NotBlank
 	@Positive
 	private int numero;
 	
@@ -42,5 +43,7 @@ public class Adresse {
 	private String ville;
 	
 	@ManyToOne
+	@ToString.Exclude
+	@JsonIgnore
 	private Personne personne;
 }

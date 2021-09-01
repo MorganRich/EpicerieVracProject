@@ -40,5 +40,8 @@
         <a mat-list-item routerLink="/search">
             <mat-icon>search</mat-icon>
         </a>
+        <a mat-list-item *ngIf="connected" (click)="signout()">
+            <mat-icon>exit_to_app</mat-icon>
+        </a>
     </mat-nav-list>
 </mat-toolbar>

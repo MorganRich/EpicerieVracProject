@@ -17,6 +17,9 @@ import { ArticleLineComponent } from './components/boutique/article-line/article
 import { ArticleDetailsComponent } from './components/boutique/article-details/article-details.component';
 import { PanierComponent } from './components/boutique/panier/panier.component';
 import { CommandeComponent } from './components/boutique/commande/commande.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ConnexionFormComponent } from './components/utilisateur/connexion-form/connexion-form.component';
+import { ConnexionPageComponent } from './components/utilisateur/connexion-page/connexion-page.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { CommandeComponent } from './components/boutique/commande/commande.compo
     ArticleLineComponent,
     ArticleDetailsComponent,
     PanierComponent,
-    CommandeComponent
+    CommandeComponent,
+    FooterComponent,
+    ConnexionFormComponent,
+    ConnexionPageComponent
   ],
   imports: [
     BrowserModule,

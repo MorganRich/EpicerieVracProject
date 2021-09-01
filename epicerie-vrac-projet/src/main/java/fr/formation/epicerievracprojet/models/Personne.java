@@ -30,8 +30,6 @@ public abstract class Personne extends Utilisateur {
 	private String numeroTelephone;
 	
 	@OneToMany(mappedBy = "personne")
-	@ToString.Exclude
-	@JsonIgnore
 	private Set<Adresse> adresses = new HashSet<>();
 	
 }

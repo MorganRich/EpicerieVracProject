@@ -39,6 +39,7 @@ public class ClientController {
 	
 	@PostMapping("")
 	public void save(@RequestBody Client c) {
+		System.out.println(c);
 		cs.save(c);
 	}
 	

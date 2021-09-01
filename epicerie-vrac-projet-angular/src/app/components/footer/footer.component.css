@@ -1,0 +1,35 @@
+.footer {
+    display: flex;
+    justify-content: center;
+}
+
+.footer > div {
+    width: 20%;
+    margin: 40px;
+}
+
+li {
+    list-style: none;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+a {
+    text-decoration: none;
+}
+
+i {
+    margin-right: 10px;
+}
+
+mat-divider {
+    margin-bottom: 15px;
+}
+
+img {
+    max-width: 90%;
+}
+
+figure {
+    text-align: center;
+}

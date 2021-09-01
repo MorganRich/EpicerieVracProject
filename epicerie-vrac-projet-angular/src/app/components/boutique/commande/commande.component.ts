@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { jsonIgnoreReplacer } from 'json-ignore';
 import { Adresse } from 'src/app/models/adresse';
 import { Client } from 'src/app/models/client';
 import { Panier } from 'src/app/models/panier';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ClientService } from 'src/app/services/client.service';
 import { GestionPanierService } from 'src/app/services/gestion-panier.service';
 
@@ -12,10 +14,6 @@ import { GestionPanierService } from 'src/app/services/gestion-panier.service';
   styleUrls: ['./commande.component.css']
 })
 export class CommandeComponent implements OnInit {
-
-  public email = new FormControl('', [Validators.required, Validators.email]);
-  public password = new FormControl('', [Validators.required]);
-  public seSouvenir: boolean = false;
 
   public creationCompte: boolean = false;
   public adresseDifferente: boolean = false;
@@ -30,18 +28,6 @@ export class CommandeComponent implements OnInit {
 
   ngOnInit(): void {
     this._gps.panierSubject.subscribe(p => this.panier = p);
-    console.log(this.client);
-  }
-
-  getErrorMessage() {
-    if (this.email.hasError('required') || this.password.hasError('required')) {
-      return 'Champ obligatoire !';
-    }
-    return this.email.hasError('email') ? 'Email non valide !' : '';
-  }
-
-  onConnexion(): void {
-    console.log(this.email.value + this.password.value);
   }
 
   onCommander(): void {
@@ -51,6 +37,7 @@ export class CommandeComponent implements OnInit {
     if (this.creationCompte)
       this.client.role = "ROLE_CLIENT"
     console.log(this.client);
+    console.log(JSON.stringify(this.client, jsonIgnoreReplacer));
     this._cs.save(this.client).subscribe(() => console.log("save"));
   }
 

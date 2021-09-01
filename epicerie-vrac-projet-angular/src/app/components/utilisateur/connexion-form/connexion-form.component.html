@@ -1,0 +1,21 @@
+<form [formGroup]="connexionForm" (ngSubmit)="onConnexion()">
+    <div class="connexionForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email">
+            <mat-error *ngIf="email?.errors?.required">L'email est obligatoire !</mat-error>
+            <mat-error *ngIf="email?.errors?.email">Format de l'email incorrect !</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput type="password" formControlName="password">
+            <mat-error *ngIf="password?.errors?.required">Le mot de passe est obligatoire !</mat-error>
+            <mat-error *ngIf="password?.errors?.pattern">Le mot de passe doit contenir au moins 8 caractères !</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="actionForm">
+        <button mat-raised-button color="primary" [disabled]="!connexionForm.valid">Connexion</button>
+        <mat-checkbox formControlName="seSouvenir">Se souvenir de moi</mat-checkbox>
+        <a mat-flat-button>Mot de passe perdu ?</a>
+    </div>
+</form>

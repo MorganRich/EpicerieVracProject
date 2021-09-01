@@ -1,7 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { jsonIgnoreReplacer } from 'json-ignore';
 import { Observable } from 'rxjs';
 import { Client } from '../models/client';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+}
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +27,7 @@ export class ClientService {
   }
 
   save(c: Client): Observable<any> {
-    console.log(c);
-    return this._hc.post(this._clientsUrl, c);
+    return this._hc.post(this._clientsUrl, JSON.stringify(c, jsonIgnoreReplacer), httpOptions);
   }
 
   update(c: Client): Observable<any> {

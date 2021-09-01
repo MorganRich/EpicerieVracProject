@@ -9,23 +9,7 @@
             Si vous avez déjà commandé avec nous auparavant, veuillez saisir vos coordonnées ci-dessous. Si vous êtes un
             nouveau client, veuillez renseigner la section facturation.
         </mat-panel-description>
-        <div class="connexionForm">
-            <mat-form-field appearance="fill">
-                <mat-label>Email</mat-label>
-                <input matInput type="email" [formControl]="email" required>
-                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Mot de passe</mat-label>
-                <input matInput type="password" [formControl]="password" required>
-                <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>
-        </div>
-        <div class="actionForm">
-            <button mat-raised-button color="primary" (click)="onConnexion()">Connexion</button>
-            <mat-checkbox [(ngModel)]="seSouvenir" name="seSouvenir">Se souvenir de moi</mat-checkbox>
-            <a mat-flat-button>Mot de passe perdu ?</a>
-        </div>
+        <app-connexion-form></app-connexion-form>
     </mat-expansion-panel>
 </mat-accordion>
 

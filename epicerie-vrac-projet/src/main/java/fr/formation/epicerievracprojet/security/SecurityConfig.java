@@ -13,6 +13,8 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
@@ -39,6 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private UtilisateurRepository ur;
 	
 	private final RequestMatcher ALLOWED_URL = new OrRequestMatcher(
+			new AntPathRequestMatcher("/authentification", "POST"),
 			new AntPathRequestMatcher("/clients", "POST"),
 			new AntPathRequestMatcher("/articles", "GET"),
 			new AntPathRequestMatcher("/articles/**", "GET"),
@@ -62,10 +65,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			new AntPathRequestMatcher("/fournisseurs/**", "DELETE"));
 	
 	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+	}
+	
+	@Bean
 	public UserDetailsService userDetailsService() {
 		return (email) -> {
 			Utilisateur u = ur.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("aucun utilisateur avec l'email " + email));
-			if (u.getRole() == "ROLE_CLIENT") {
+			if (u.getRole().equals("ROLE_CLIENT")) {
 				Client c = cs.findById(u.getId()).get();
 				return new User(c.getEmail(), c.getPassword(), AuthorityUtils.createAuthorityList(c.getRole()));
 			}

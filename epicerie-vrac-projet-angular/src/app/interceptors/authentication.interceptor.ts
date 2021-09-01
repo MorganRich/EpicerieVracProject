@@ -18,7 +18,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
     if (this._auth.connected) {
       request = request.clone({
         setHeaders: {
-          Authorization: "Basic " + btoa(this._auth.username + ":" + this._auth.password)
+          Authorization: "Basic " + btoa(this._auth.utilisateur?.email + ":" + this._auth.utilisateur?.password)
         }
       });
     }
