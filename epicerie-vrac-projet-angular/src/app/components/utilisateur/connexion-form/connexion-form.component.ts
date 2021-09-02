@@ -14,7 +14,7 @@ export class ConnexionFormComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
     seSouvenir: new FormControl(false)
-  })
+  });
 
   constructor(private _as:AuthenticationService,
               private _r: Router) { }

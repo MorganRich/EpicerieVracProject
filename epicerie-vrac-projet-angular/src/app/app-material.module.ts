@@ -16,6 +16,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTreeModule} from '@angular/material/tree';
+import {MatChipsModule} from '@angular/material/chips';
+import {MaterialFileInputModule} from 'ngx-material-file-input';
 
 
 @NgModule({
@@ -36,7 +39,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTreeModule,
+    MatChipsModule,
+    MaterialFileInputModule
   ],
   exports: [
     MatToolbarModule,
@@ -55,7 +61,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTreeModule,
+    MatChipsModule,
+    MaterialFileInputModule
   ]
 })
 export class AppMaterialModule { }

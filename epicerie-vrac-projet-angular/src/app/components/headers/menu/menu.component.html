@@ -1,7 +1,7 @@
 <mat-toolbar>
     <h1>Du Sens en Vrac</h1>
     <mat-nav-list>
-        <a mat-list-item routerLink="/">Accueil</a>
+        <a mat-list-item routerLink="/" *ngIf="utilisateur.role != 'ROLE_ADMIN'">Accueil</a>
         <a mat-list-item routerLink="/boutique" [matMenuTriggerFor]="categories">
             Boutique <mat-icon>keyboard_arrow_down</mat-icon>
         </a>
@@ -31,17 +31,20 @@
             <a mat-menu-item>Hygiène féminin</a>
             <a mat-menu-item>Hygiène homme</a>
         </mat-menu>
-        <a mat-list-item routerLink="/">Nous trouver</a>
-        <a mat-list-item routerLink="/">Blog</a>
-        <a mat-list-item routerLink="/">Contact</a>
-        <a mat-list-item routerLink="/panier">
+        <a mat-list-item routerLink="/" *ngIf="utilisateur.role == 'ROLE_ADMIN'">Clients</a>
+        <a mat-list-item routerLink="/" *ngIf="utilisateur.role == 'ROLE_ADMIN'">Fournisseurs</a>
+        <a mat-list-item routerLink="/" *ngIf="utilisateur.role == 'ROLE_ADMIN'">Commandes</a>
+        <a mat-list-item routerLink="/" *ngIf="utilisateur.role != 'ROLE_ADMIN'">Nous trouver</a>
+        <a mat-list-item routerLink="/" *ngIf="utilisateur.role != 'ROLE_ADMIN'">Blog</a>
+        <a mat-list-item routerLink="/" *ngIf="utilisateur.role != 'ROLE_ADMIN'">Contact</a>
+        <a mat-list-item routerLink="/panier" *ngIf="utilisateur.role != 'ROLE_ADMIN'">
             <mat-icon [matBadge]="badgeValue == 0 ? '' : badgeValue">shopping_cart</mat-icon>
         </a>
-        <a mat-list-item routerLink="/search">
+        <a mat-list-item routerLink="/search" *ngIf="utilisateur.role != 'ROLE_ADMIN'">
             <mat-icon>search</mat-icon>
         </a>
         <a mat-list-item *ngIf="connected" (click)="signout()">
-            <mat-icon>exit_to_app</mat-icon>
+            {{utilisateur.role != 'ROLE_ADMIN' ? utilisateur.personne.prenom + ' ' : 'Mode Admin '}} <mat-icon>exit_to_app</mat-icon>
         </a>
     </mat-nav-list>
 </mat-toolbar>

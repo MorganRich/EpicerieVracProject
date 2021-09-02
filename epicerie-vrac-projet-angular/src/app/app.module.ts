@@ -20,6 +20,7 @@ import { CommandeComponent } from './components/boutique/commande/commande.compo
 import { FooterComponent } from './components/footer/footer.component';
 import { ConnexionFormComponent } from './components/utilisateur/connexion-form/connexion-form.component';
 import { ConnexionPageComponent } from './components/utilisateur/connexion-page/connexion-page.component';
+import { ArticleAddComponent } from './components/boutique/article-add/article-add.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ConnexionPageComponent } from './components/utilisateur/connexion-page/
     CommandeComponent,
     FooterComponent,
     ConnexionFormComponent,
-    ConnexionPageComponent
+    ConnexionPageComponent,
+    ArticleAddComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,7 @@ import { ConnexionPageComponent } from './components/utilisateur/connexion-page/
       useClass: AuthenticationInterceptor,
       multi: true,
       deps: [AuthenticationService]
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })

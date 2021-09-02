@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from 'src/app/models/client';
-import { Utilisateur } from 'src/app/models/utilisateur';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { GestionPanierService } from 'src/app/services/gestion-panier.service';
 
@@ -13,7 +12,7 @@ export class MenuComponent implements OnInit {
 
   public badgeValue: number = 0;
   public connected: boolean = false;
-  public utilisateur: Utilisateur = new Utilisateur();
+  public utilisateur: Client = new Client();
 
   constructor(private _gps: GestionPanierService,
               private _as: AuthenticationService) { }

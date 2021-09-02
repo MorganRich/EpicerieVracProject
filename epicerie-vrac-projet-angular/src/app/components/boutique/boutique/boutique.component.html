@@ -32,10 +32,11 @@
     </mat-button-toggle>
 </mat-button-toggle-group>
 
+<a mat-flat-button color="primary" routerLink="/article/add" *ngIf="utilisateur.role == 'ROLE_ADMIN'">Ajouter un nouveau produit</a>
 
 <div class="boutique" *ngIf="display == 'grid'">
-    <app-article-card *ngFor="let a of articles" [article]="a"></app-article-card>
+    <app-article-card *ngFor="let a of articles" [article]="a" [urlImage]="getUrlImage(a)" (deleteEvent)="deleteById($event)"></app-article-card>
 </div>
 <mat-list *ngIf="display == 'list'">
-    <app-article-line *ngFor="let a of articles" [article]="a"></app-article-line>
+    <app-article-line *ngFor="let a of articles" [article]="a" (deleteEvent)="deleteById($event)"></app-article-line>
 </mat-list>

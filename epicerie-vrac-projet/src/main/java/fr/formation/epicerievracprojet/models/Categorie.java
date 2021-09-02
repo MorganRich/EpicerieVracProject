@@ -1,5 +1,6 @@
 package fr.formation.epicerievracprojet.models;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -44,7 +45,8 @@ public class Categorie {
 	private Set<Categorie> sousCategorie = new TreeSet<>();
 
 	@ManyToMany
+	@ToString.Exclude
 	@JsonIgnore
-	private Set<Article> articles = new TreeSet<>();
+	private Set<Article> articles = new HashSet<>();
 
 }

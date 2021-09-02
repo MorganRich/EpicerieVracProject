@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/models/article';
+import { Client } from 'src/app/models/client';
+import { Utilisateur } from 'src/app/models/utilisateur';
 import { ArticleService } from 'src/app/services/article.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 interface NombreProduit {
   value: number;
@@ -36,23 +39,41 @@ export class BoutiqueComponent implements OnInit {
   public display: string | null = "";
   public tri: string | null = "";
 
-  constructor(private _as: ArticleService) { }
+  public utilisateur: Client = new Client();
+
+  constructor(private _as: ArticleService,
+              private _aus: AuthenticationService) { }
 
   ngOnInit(): void {
-    this._as.findAll().subscribe(articles => this.articles = articles);
+    this.getData();
     this.display = localStorage.getItem("display") != null ? localStorage.getItem("display") : "list";
     this.tri = localStorage.getItem("tri") != null ? localStorage.getItem("tri"): "up";
+    this._aus.utilisateurSubject.subscribe(us => this.utilisateur = us);
+  }
+
+  getData(): void {
+    this._as.findAll().subscribe(articles => this.articles = articles);
+  }
+
+  getUrlImage(a: Article): string {
+    return this._as.image(a);
   }
 
   onDisplayChange(d: string): void {
     this.display = d;
-    console.log(this.display)
     localStorage.setItem("display", d);
   }
 
   onTriChange(d: string): void {
     this.tri = d;
     localStorage.setItem("tri", d);
+  }
+
+  deleteById(id: number): void {
+    this._as.deleteById(id).subscribe(() => {
+      this.getData();
+      console.log("suppression OK");
+    })
   }
 
 }

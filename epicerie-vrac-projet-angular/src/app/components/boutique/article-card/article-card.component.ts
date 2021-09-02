@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Article } from 'src/app/models/article';
+import { ArticleService } from 'src/app/services/article.service';
 import { GestionPanierService } from 'src/app/services/gestion-panier.service';
 import { ArticleDetailsComponent } from '../article-details/article-details.component';
 
@@ -13,6 +14,12 @@ export class ArticleCardComponent implements OnInit {
 
   @Input()
   public article: Article = new Article();
+
+  @Input()
+  public urlImage: string = "";
+
+  @Output()
+  deleteEvent = new EventEmitter<number>();
 
   constructor(private _gps: GestionPanierService,
               public dialog: MatDialog) { }
@@ -33,6 +40,14 @@ export class ArticleCardComponent implements OnInit {
     // dialogRef.afterClosed().subscribe(result => {
     //   console.log(`Dialog result: ${result}`);
     // });
+  }
+
+  onUpdate(): void {
+
+  }
+
+  onDelete(): void {
+    this.deleteEvent.emit(this.article.id);
   }
 
 }

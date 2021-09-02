@@ -13,15 +13,15 @@ export class AuthenticationService {
   private _url = "http://localhost:8080";
 
   public connected: boolean = false;
-  public utilisateur: Utilisateur = new Utilisateur();
+  public utilisateur: Client = new Client();
 
   public connectedSubject: Subject<boolean> = new Subject<boolean>();
-  public utilisateurSubject: BehaviorSubject<Utilisateur> = new BehaviorSubject<Utilisateur>(this.utilisateur);
+  public utilisateurSubject: BehaviorSubject<Client> = new BehaviorSubject<Client>(this.utilisateur);
 
   constructor(private _hc: HttpClient) { }
 
-  signin(email: string, password: string): Observable<Utilisateur> {
-    return this._hc.post<Utilisateur>(this._url + "/authentification", {}, {
+  signin(email: string, password: string): Observable<Client> {
+    return this._hc.post<Client>(this._url + "/authentification", {}, {
       params: {
         "email": email,
         "password": password
@@ -36,7 +36,7 @@ export class AuthenticationService {
   }
 
   signout() {
-    this.utilisateur = new Utilisateur();
+    this.utilisateur = new Client();
     this.connected = false;
     this.connectedSubject.next(this.connected);
     this.utilisateurSubject.next(this.utilisateur);

@@ -1,0 +1,102 @@
+<h1>NOUVEAU PRODUIT</h1>
+<form class="mat-elevation-z2" #form=ngForm (ngSubmit)="onSubmit()">
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Référence</mat-label>
+            <input matInput type="text" name="reference" [(ngModel)]="article.reference" #titleInput="ngModel" required>
+            <mat-error
+                *ngIf="titleInput.invalid && (titleInput.dirty || titleInput.touched) && titleInput.errors?.required">
+                La référence de l'article est obligatoire !
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Nom de l'article</mat-label>
+            <input matInput type="text" name="nom" [(ngModel)]="article.nom" #titleInput="ngModel" required>
+            <mat-error
+                *ngIf="titleInput.invalid && (titleInput.dirty || titleInput.touched) && titleInput.errors?.required">
+                Le nom de l'article est obligatoire !
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Lieu de production</mat-label>
+            <input matInput type="text" name="lieuDeProduction" [(ngModel)]="article.lieuDeProduction"
+                #titleInput="ngModel" required>
+            <mat-error
+                *ngIf="titleInput.invalid && (titleInput.dirty || titleInput.touched) && titleInput.errors?.required">
+                Le lieu de production de l'article est obligatoire !
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Catégories</mat-label>
+            <mat-select name="categories" [(ngModel)]="article.categories" multiple required>
+                <mat-option *ngFor="let c of categories" [value]="c">{{c.nom}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <ngx-mat-file-input #removableInput name="image" (change)="onFileSelect($event)" placeholder="Image"></ngx-mat-file-input>
+            <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+                <mat-icon>clear</mat-icon>
+            </button>
+        </mat-form-field>
+
+    </div>
+
+    <mat-checkbox [(ngModel)]="article.bio" name="bio">Bio</mat-checkbox>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput type="text" name="description" [(ngModel)]="article.description" #titleInput="ngModel"
+            required></textarea>
+        <mat-error
+            *ngIf="titleInput.invalid && (titleInput.dirty || titleInput.touched) && titleInput.errors?.required">
+            La description de l'article est obligatoire !
+        </mat-error>
+    </mat-form-field>
+
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Prix unitaire (TTC)</mat-label>
+            <input matInput type="number" name="prixUnitaire" [(ngModel)]="article.prixUnitaire" #titleInput="ngModel"
+                required>
+            <mat-error
+                *ngIf="titleInput.invalid && (titleInput.dirty || titleInput.touched) && titleInput.errors?.required">
+                Le prix de l'article est obligatoire !
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Unité de mesure</mat-label>
+            <mat-select [(value)]="article.uniteMesure" name="uniteMesure">
+                <mat-option value="KILO">Kilo</mat-option>
+                <mat-option value="LITRE">Litre</mat-option>
+                <mat-option value="UNITE">Unité</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Promotion</mat-label>
+            <input matInput type="number" name="pourcentagePromo" [(ngModel)]="article.pourcentagePromo"
+                #titleInput="ngModel">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Quantité en stock</mat-label>
+            <input matInput type="number" name="quantiteEnStock" [(ngModel)]="article.quantiteEnStock"
+                #titleInput="ngModel" required>
+            <mat-error
+                *ngIf="titleInput.invalid && (titleInput.dirty || titleInput.touched) && titleInput.errors?.required">
+                La quantité en stock de l'article est obligatoire !
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="controls">
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Enregistrer le
+            produit</button>
+        <a mat-raised-button color="secondary" type="button" routerLink="/musics">Annuler</a>
+    </div>
+</form>

@@ -3,6 +3,7 @@ package fr.formation.epicerievracprojet.models;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -64,8 +65,7 @@ public class Article {
 	@PositiveOrZero
 	private int nombreDeConsultation;
 	
-	@ManyToMany(mappedBy = "articles")
-	@ToString.Exclude
+	@ManyToMany(mappedBy = "articles", cascade = CascadeType.ALL)
 	private Set<Categorie> categories = new HashSet<>();
 	
 	@ManyToMany(mappedBy = "articles")

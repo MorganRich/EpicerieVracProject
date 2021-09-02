@@ -5,7 +5,13 @@
     <button mat-button (click)="onAjouterPanier()">
         <mat-icon>shopping_cart</mat-icon> Ajouter au panier
     </button>
-    <button mat-button>
+    <button mat-button (click)="openDialog()">
         <mat-icon>remove_red_eye</mat-icon> Quick View
+    </button>
+    <button mat-button (click)="onUpdate()">
+        <mat-icon>edit</mat-icon> Mettre à jour
+    </button>
+    <button mat-button (click)="onDelete()">
+        <mat-icon>delete</mat-icon> Supprimer le produit
     </button>
 </mat-list-item>
