@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Admin } from '../models/admin';
 import { Client } from '../models/client';
+import { Utilisateur } from '../models/utilisateur';
 
 @Injectable({
   providedIn: 'root'
@@ -13,32 +13,32 @@ export class AuthenticationService {
   private _url = "http://localhost:8080";
 
   public connected: boolean = false;
-  public utilisateur: Client | Admin | undefined = undefined;
+  public utilisateur: Utilisateur = new Utilisateur();
 
-  public connectedClientSubject: Subject<boolean> = new Subject<boolean>();
-  public utilisateurSubject: BehaviorSubject<Client | Admin | undefined> = new BehaviorSubject<Client | Admin | undefined>(this.utilisateur);
+  public connectedSubject: Subject<boolean> = new Subject<boolean>();
+  public utilisateurSubject: BehaviorSubject<Utilisateur> = new BehaviorSubject<Utilisateur>(this.utilisateur);
 
   constructor(private _hc: HttpClient) { }
 
-  signin(email: string, password: string): Observable<Client | Admin> {
-    return this._hc.post<Client | Admin>(this._url + "/authentification", {}, {
+  signin(email: string, password: string): Observable<Utilisateur> {
+    return this._hc.post<Utilisateur>(this._url + "/authentification", {}, {
       params: {
         "email": email,
         "password": password
       }
-    }).pipe(tap(r => {
-          this.utilisateur = r;
+    }).pipe(tap(u => {
+          this.utilisateur = u;
           this.utilisateur.password = password;
           this.connected = true;
-          this.connectedClientSubject.next(this.connected);
+          this.connectedSubject.next(this.connected);
           this.utilisateurSubject.next(this.utilisateur);
         }));
   }
 
   signout() {
-    this.utilisateur = undefined;
+    this.utilisateur = new Utilisateur();
     this.connected = false;
-    this.connectedClientSubject.next(this.connected);
+    this.connectedSubject.next(this.connected);
     this.utilisateurSubject.next(this.utilisateur);
   }
 

@@ -1,5 +1,4 @@
 import { Categorie } from "./categorie";
-import { Fournisseur } from "./fournisseur";
 import { UniteMesure } from "./unite-mesure";
 
 export class Article {
@@ -16,6 +15,6 @@ export class Article {
     public quantiteEnStock: number = 0;
     public nombreDeConsultation: number = 0;
     public categories: Categorie[] = [];
-    public fournisseurs: Fournisseur[] = [];
+    // public fournisseurs: Fournisseur[] = [];
     // public achats: LigneAchat[] = [];
 }

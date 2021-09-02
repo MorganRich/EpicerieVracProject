@@ -44,6 +44,7 @@ public class Categorie {
 	private Set<Categorie> sousCategorie = new TreeSet<>();
 
 	@ManyToMany
+	@JsonIgnore
 	private Set<Article> articles = new TreeSet<>();
 
 }

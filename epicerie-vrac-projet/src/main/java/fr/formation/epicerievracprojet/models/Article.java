@@ -66,7 +66,6 @@ public class Article {
 	
 	@ManyToMany(mappedBy = "articles")
 	@ToString.Exclude
-	@JsonIgnore
 	private Set<Categorie> categories = new HashSet<>();
 	
 	@ManyToMany(mappedBy = "articles")

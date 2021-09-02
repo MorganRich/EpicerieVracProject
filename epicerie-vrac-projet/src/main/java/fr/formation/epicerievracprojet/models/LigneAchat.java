@@ -37,7 +37,6 @@ public class LigneAchat {
 	
 	@ToString.Exclude
 	@EmbeddedId
-	@JsonIgnore
 	private LigneAchatId id;
 	
 	private int quantite;

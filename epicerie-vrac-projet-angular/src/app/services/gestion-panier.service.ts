@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Article } from '../models/article';
-import { Client } from '../models/client';
 import { LigneAchat } from '../models/ligne-achat';
 import { Panier } from '../models/panier';
 
@@ -10,11 +9,10 @@ import { Panier } from '../models/panier';
 })
 export class GestionPanierService {
 
-  public panier: Panier = new Client().panier;
+  public panier: Panier = new Panier();
 
   public quantiteLignePanier: Subject<number> = new Subject<number>();
   public quantiteMax: Subject<boolean> = new Subject<boolean>();
-
   public panierSubject: BehaviorSubject<Panier> = new BehaviorSubject<Panier>(this.panier);
 
   constructor() { }

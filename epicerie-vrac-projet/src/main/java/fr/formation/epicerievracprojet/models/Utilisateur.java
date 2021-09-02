@@ -25,7 +25,7 @@ import lombok.ToString;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Utilisateur {
+public class Utilisateur {
 	
 	@EqualsAndHashCode.Include
 	@Id
@@ -38,6 +38,11 @@ public abstract class Utilisateur {
 	@Email
 	@Column(unique = true)
 	private String email;
+	
+	@NotBlank
+	@NotNull
+	@Length(min = 8)
+	private String password;
 	
 	@NotBlank
 	@NotNull

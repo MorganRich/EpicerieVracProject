@@ -19,23 +19,13 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
-import fr.formation.epicerievracprojet.models.Admin;
-import fr.formation.epicerievracprojet.models.Client;
 import fr.formation.epicerievracprojet.models.Utilisateur;
 import fr.formation.epicerievracprojet.repositories.UtilisateurRepository;
-import fr.formation.epicerievracprojet.services.AdminService;
-import fr.formation.epicerievracprojet.services.ClientService;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-	@Autowired
-	private ClientService cs;
-	
-	@Autowired
-	private AdminService as;
 	
 	@Autowired
 	private UtilisateurRepository ur;
@@ -73,14 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public UserDetailsService userDetailsService() {
 		return (email) -> {
 			Utilisateur u = ur.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("aucun utilisateur avec l'email " + email));
-			if (u.getRole().equals("ROLE_CLIENT")) {
-				Client c = cs.findById(u.getId()).get();
-				return new User(c.getEmail(), c.getPassword(), AuthorityUtils.createAuthorityList(c.getRole()));
-			}
-			else {
-				Admin a = as.findById(u.getId()).get();
-				return new User(a.getEmail(), a.getPassword(), AuthorityUtils.createAuthorityList(a.getRole()));
-			}
+			return new User(u.getEmail(), u.getPassword(), AuthorityUtils.createAuthorityList(u.getRole()));
 		};
 	}
 	

@@ -5,12 +5,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.formation.epicerievracprojet.models.Client;
 import fr.formation.epicerievracprojet.repositories.AdresseRepository;
 import fr.formation.epicerievracprojet.repositories.ClientRepository;
+import fr.formation.epicerievracprojet.repositories.PersonneRepository;
 
 @Service
 public class ClientService {
@@ -20,6 +22,12 @@ public class ClientService {
 	
 	@Autowired
 	private AdresseRepository ar;
+	
+	@Autowired
+	private PersonneRepository pr;
+	
+	@Autowired
+	private PasswordEncoder pe;
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	public Collection<Client> findAll() {
@@ -31,15 +39,13 @@ public class ClientService {
 		return cr.findById(id);
 	}
 	
-	public Optional<Client> findByEmail(String email) {
-		return cr.findByEmail(email);
-	}
-	
 	@Transactional
 	public void save(Client c) {
+		c.setPassword(pe.encode(c.getPassword()));
+		pr.save(c.getPersonne());
 		cr.save(c);
-		c.getAdresses().forEach(a -> {
-			a.setPersonne(c);
+		c.getPersonne().getAdresses().forEach(a -> {
+			a.setPersonne(c.getPersonne());
 			ar.save(a);
 		});
 	}

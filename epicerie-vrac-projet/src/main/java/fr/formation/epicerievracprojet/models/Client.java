@@ -8,11 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Where;
-import org.hibernate.validator.constraints.Length;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,12 +21,7 @@ import lombok.ToString;
 @Setter
 @ToString(callSuper = true)
 @Entity
-public class Client extends Personne {
-	
-	@NotBlank
-	@NotNull
-	@Length(min = 8)
-	private String password;
+public class Client extends Utilisateur {
 	
 	@OneToOne(mappedBy = "client")
 	@Where(clause = "DTYPE = 'Panier'")
@@ -41,4 +33,7 @@ public class Client extends Personne {
 	
 	@ManyToMany
 	private Set<Article> favoris = new HashSet<>();
+	
+	@OneToOne
+	private Personne personne;
 }

@@ -20,11 +20,11 @@
         <div>
             <mat-form-field appearance="fill">
                 <mat-label>Prenom</mat-label>
-                <input matInput type="text" [(ngModel)]="client.prenom" name="client.prenom" required>
+                <input matInput type="text" [(ngModel)]="client.personne.prenom" name="client.personne.prenom" required>
             </mat-form-field>
             <mat-form-field class="nom" appearance="fill">
                 <mat-label>Nom</mat-label>
-                <input matInput type="text" [(ngModel)]="client.nom" name="client.nom" required>
+                <input matInput type="text" [(ngModel)]="client.personne.nom" name="client.personne.nom" required>
             </mat-form-field>
         </div>
         <mat-form-field appearance="fill">
@@ -53,7 +53,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Téléphone</mat-label>
-            <input matInput type="text" [(ngModel)]="client.numeroTelephone" name="client.numeroTelphone" required>
+            <input matInput type="text" [(ngModel)]="client.personne.numeroTelephone" name="client.personne.numeroTelephone" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>

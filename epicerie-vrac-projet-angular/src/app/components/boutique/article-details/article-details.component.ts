@@ -25,7 +25,6 @@ export class ArticleDetailsComponent implements OnInit {
   ngOnInit(): void {
     // this.article.id = this._ar.snapshot.params.id;
     // this._as.findById(this.article.id).subscribe(a => this.article = a);
-    console.log(this._data);
     this.article = this._data.article;
     this._gps.quantiteLignePanier.subscribe(qte => this.quantitePanier = qte);
     this._gps.quantiteMax.subscribe(max => this.quantiteMax = max);

@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { jsonIgnoreReplacer } from 'json-ignore';
 import { Adresse } from 'src/app/models/adresse';
 import { Client } from 'src/app/models/client';
 import { Panier } from 'src/app/models/panier';
-import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ClientService } from 'src/app/services/client.service';
 import { GestionPanierService } from 'src/app/services/gestion-panier.service';
 
@@ -21,7 +18,7 @@ export class CommandeComponent implements OnInit {
   public client: Client = new Client();
   public adresse1: Adresse = new Adresse();
   public adresse2: Adresse = new Adresse();
-  public panier: Panier = new Panier(this.client);
+  public panier: Panier = new Panier();
 
   constructor(private _gps: GestionPanierService,
               private _cs: ClientService) { }
@@ -31,14 +28,12 @@ export class CommandeComponent implements OnInit {
   }
 
   onCommander(): void {
-    this.client.adresses.push(this.adresse1);
+    this.client.personne.adresses.push(this.adresse1);
     if (this.adresseDifferente)
-      this.client.adresses.push(this.adresse2);
+      this.client.personne.adresses.push(this.adresse2);
     if (this.creationCompte)
       this.client.role = "ROLE_CLIENT"
-    console.log(this.client);
-    console.log(JSON.stringify(this.client, jsonIgnoreReplacer));
-    this._cs.save(this.client).subscribe(() => console.log("save"));
+    this._cs.save(this.client).subscribe(() => console.log("Enregistrement d'un nouveau client ok"));
   }
 
 }

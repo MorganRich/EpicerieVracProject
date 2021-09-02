@@ -4,11 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,8 +19,14 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString()
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public abstract class Personne extends Utilisateur {
+public class Personne {
+	
+	@EqualsAndHashCode.Include
+	@Id
+	@GeneratedValue
+	private int id;
 	
 	@NotBlank
 	private String nom;

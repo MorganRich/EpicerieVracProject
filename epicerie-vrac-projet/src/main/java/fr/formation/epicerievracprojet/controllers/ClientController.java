@@ -3,6 +3,7 @@ package fr.formation.epicerievracprojet.controllers;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.formation.epicerievracprojet.models.Admin;
 import fr.formation.epicerievracprojet.models.Client;
-import fr.formation.epicerievracprojet.services.AdminService;
+import fr.formation.epicerievracprojet.models.Utilisateur;
+import fr.formation.epicerievracprojet.repositories.UtilisateurRepository;
 import fr.formation.epicerievracprojet.services.ClientService;
 
 @RestController
@@ -25,7 +26,10 @@ public class ClientController {
 	private ClientService cs;
 	
 	@Autowired
-	private AdminService as;
+	private UtilisateurRepository ur;
+	
+	@Autowired
+	private PasswordEncoder pe;
 	
 	@GetMapping("")
 	public Collection<Client> findAll() {
@@ -39,13 +43,13 @@ public class ClientController {
 	
 	@PostMapping("")
 	public void save(@RequestBody Client c) {
-		System.out.println(c);
 		cs.save(c);
 	}
 	
 	@PostMapping("/admin")
-	public void save(@RequestBody Admin a) {
-		as.save(a);
+	public void save(@RequestBody Utilisateur u) {
+		u.setPassword(pe.encode(u.getPassword()));
+		ur.save(u);
 	}
 	
 	@PutMapping("/{id}")
