@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Article } from 'src/app/models/article';
 import { Client } from 'src/app/models/client';
-import { LigneAchat } from 'src/app/models/ligne-achat';
 import { Panier } from 'src/app/models/panier';
+import { ArticleService } from 'src/app/services/article.service';
 import { GestionPanierService } from 'src/app/services/gestion-panier.service';
 
 @Component({
@@ -15,10 +16,15 @@ export class PanierComponent implements OnInit {
   public panier: Panier = new Client().panier;
 
   constructor(private _gps: GestionPanierService,
+              private _as: ArticleService,
               private _r: Router) { }
 
   ngOnInit(): void {
     this._gps.panierSubject.subscribe(p => this.panier = p);
+  }
+
+  getUrlImage(article: Article): string {
+    return this._as.image(article);
   }
 
   onSupprimer(index: number): void {

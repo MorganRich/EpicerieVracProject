@@ -1,17 +1,18 @@
 <mat-list-item>
-    <img matListAvatar [routerLink]="'/article/' + article.id" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <img matListAvatar [routerLink]="'/article/' + article.id" [src]="urlImage" alt="Photo produit">
     <a mat-line [routerLink]="'/article/' + article.id"><strong>{{article.nom}}</strong></a>
     <div mat-line>{{article.prixUnitaire}} € / {{article.uniteMesure}}</div>
-    <button mat-button (click)="onAjouterPanier()">
+    <button mat-button (click)="onAjouterPanier()" *ngIf="utilisateur.role != 'ROLE_ADMIN'">
         <mat-icon>shopping_cart</mat-icon> Ajouter au panier
     </button>
     <button mat-button (click)="openDialog()">
         <mat-icon>remove_red_eye</mat-icon> Quick View
     </button>
-    <button mat-button (click)="onUpdate()">
+    <button mat-button (click)="onUpdate()" *ngIf="utilisateur.role == 'ROLE_ADMIN'">
         <mat-icon>edit</mat-icon> Mettre à jour
     </button>
-    <button mat-button (click)="onDelete()">
+    <button mat-button (click)="onDelete()" *ngIf="utilisateur.role == 'ROLE_ADMIN'">
         <mat-icon>delete</mat-icon> Supprimer le produit
     </button>
 </mat-list-item>
+<mat-divider></mat-divider>

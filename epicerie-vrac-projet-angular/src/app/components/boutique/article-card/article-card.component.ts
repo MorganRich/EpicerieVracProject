@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Article } from 'src/app/models/article';
-import { ArticleService } from 'src/app/services/article.service';
+import { Client } from 'src/app/models/client';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { GestionPanierService } from 'src/app/services/gestion-panier.service';
+import { ArticleDetailsDialogComponent } from '../article-details-dialog/article-details-dialog.component';
 import { ArticleDetailsComponent } from '../article-details/article-details.component';
 
 @Component({
@@ -18,22 +20,26 @@ export class ArticleCardComponent implements OnInit {
   @Input()
   public urlImage: string = "";
 
+  @Input()
+  public utilisateur: Client = new Client();
+
   @Output()
   deleteEvent = new EventEmitter<number>();
 
   constructor(private _gps: GestionPanierService,
+              private _as: AuthenticationService,
               public dialog: MatDialog) { }
 
   ngOnInit(): void {
+
   }
 
   onAjouterPanier(): void {
-    console.log("ajouterPanier");
     this._gps.ajouterArticle(this.article, 1);
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(ArticleDetailsComponent, {
+    const dialogRef = this.dialog.open(ArticleDetailsDialogComponent, {
       data: {article: this.article}
     });
 

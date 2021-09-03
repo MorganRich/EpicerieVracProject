@@ -46,8 +46,13 @@ public class ClientController {
 		cs.save(c);
 	}
 	
+	@PostMapping("/commande")
+	public void saveCommande(@RequestBody int id) {
+		cs.saveCommande(id);
+	}
+	
 	@PostMapping("/admin")
-	public void save(@RequestBody Utilisateur u) {
+	public void saveAdmin(@RequestBody Utilisateur u) {
 		u.setPassword(pe.encode(u.getPassword()));
 		ur.save(u);
 	}

@@ -18,10 +18,10 @@ export class GestionPanierService {
   constructor() { }
 
   ajouterArticle(a: Article, quantite: number): void {
-    let index = this.panier.articles.findIndex(la => la.article.id == a.id);
+    let index = this.panier.articles.findIndex(la => la.id.article.id == a.id);
     if (index == -1) {
       let ajout: LigneAchat = new LigneAchat();
-      ajout.article = a;
+      ajout.id.article = a;
       ajout.quantite = quantite;
       this.panier.articles.push(ajout);
       this.panierSubject.next(this.panier);
@@ -48,7 +48,7 @@ export class GestionPanierService {
   }
 
   augmenterQuantite(index: number): void {
-    if (this.panier.articles[index].quantite < this.panier.articles[index].article.quantiteEnStock) {
+    if (this.panier.articles[index].quantite < this.panier.articles[index].id.article.quantiteEnStock) {
       this.panier.articles[index].quantite++;
       this.calculerPrixTotal();
       this.panierSubject.next(this.panier);
@@ -64,7 +64,7 @@ export class GestionPanierService {
   }
 
   calculerPrixTotal(): void {
-    this.panier.prixTotal = this.panier.articles.map(la => la.article.prixUnitaire * la.quantite)
+    this.panier.prixTotal = this.panier.articles.map(la => la.id.article.prixUnitaire * la.quantite)
                                                 .reduce((acc, value) => acc + value, 0);
   }
 

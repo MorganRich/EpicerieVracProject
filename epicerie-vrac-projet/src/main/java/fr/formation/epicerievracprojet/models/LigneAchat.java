@@ -32,6 +32,7 @@ public class LigneAchat {
 		private Article article;
 
 		@ManyToOne
+		@JsonIgnore
 		private Achat achat;
 	}
 	

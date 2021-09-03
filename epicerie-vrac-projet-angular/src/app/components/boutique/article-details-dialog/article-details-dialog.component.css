@@ -1,0 +1,30 @@
+.affichage {
+    display: flex;
+    margin: 20px;
+}
+
+img {
+    width: 400px;
+    margin-right: 20px;
+}
+
+.details {
+    flex-grow: 2;
+}
+
+.action {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+button {
+    margin: 5px;
+}
+
+.quantite {
+    margin: 15px;
+}
+
+mat-divider {
+    margin-bottom: 10px;
+}

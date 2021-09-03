@@ -21,6 +21,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ConnexionFormComponent } from './components/utilisateur/connexion-form/connexion-form.component';
 import { ConnexionPageComponent } from './components/utilisateur/connexion-page/connexion-page.component';
 import { ArticleAddComponent } from './components/boutique/article-add/article-add.component';
+import { ArticleDetailsDialogComponent } from './components/boutique/article-details-dialog/article-details-dialog.component';
+import { NouveauClientFormComponent } from './components/utilisateur/nouveau-client-form/nouveau-client-form.component';
+import { PaiementComponent } from './components/boutique/commande/paiement/paiement.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { ArticleAddComponent } from './components/boutique/article-add/article-a
     FooterComponent,
     ConnexionFormComponent,
     ConnexionPageComponent,
-    ArticleAddComponent
+    ArticleAddComponent,
+    ArticleDetailsDialogComponent,
+    NouveauClientFormComponent,
+    PaiementComponent,
   ],
   imports: [
     BrowserModule,

@@ -44,7 +44,7 @@ export class ArticleService {
 
   image(a: Article): string {
     if (a.image)
-      return this._url + "/images/" + a.image;
+      return this._url + "/files/" + a.image;
     else
       return this._url + "/assets/images/produit.jpg";
   }

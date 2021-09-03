@@ -1,5 +1,6 @@
 .boutique {
     display: flex;
+    flex-wrap: wrap;
 }
 
 mat-button-toggle-group {

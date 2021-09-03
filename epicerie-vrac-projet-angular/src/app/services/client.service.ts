@@ -25,6 +25,10 @@ export class ClientService {
     return this._hc.post(this._clientsUrl, c);
   }
 
+  saveCommande(id: number): Observable<any> {
+    return this._hc.post(this._clientsUrl + "/commande", id);
+  }
+
   update(c: Client): Observable<any> {
     return this._hc.put(this._clientsUrl + "/" + c.id, c);
   }

@@ -22,7 +22,7 @@
                 <mat-icon>add</mat-icon>
             </button>
             <button mat-raised-button color="primary" (click)="onAddPanier()" *ngIf="utilisateur.role != 'ROLE_ADMIN'">Ajouter au panier</button>
-            
+
             <button mat-raised-button color="primary" (click)="onUpdate()" *ngIf="utilisateur.role == 'ROLE_ADMIN'">
                 <mat-icon>edit</mat-icon> Mettre à jour
             </button>

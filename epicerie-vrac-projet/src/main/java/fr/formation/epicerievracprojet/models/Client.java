@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -23,11 +24,11 @@ import lombok.ToString;
 @Entity
 public class Client extends Utilisateur {
 	
-	@OneToOne(mappedBy = "client")
+	@OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
 	@Where(clause = "DTYPE = 'Panier'")
 	private Panier panier;
 	
-	@OneToMany(mappedBy = "client")
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	@Where(clause = "DTYPE = 'Commande'")
 	private Set<Commande> commandes = new TreeSet<>();
 	
