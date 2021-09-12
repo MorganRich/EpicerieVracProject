@@ -1,0 +1,47 @@
+<!-- <mat-stepper class="stepper" [orientation]="(stepperOrientation | async)!"> -->
+<mat-horizontal-stepper class="stepper">
+    <mat-step label="Détails de facturation">
+        <mat-accordion *ngIf="utilisateur.role != 'ROLE_CLIENT'">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon>check_circle_outline</mat-icon> Déjà client ? Cliquez ici pour vous connecter
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-panel-description>
+                    Si vous avez déjà commandé avec nous auparavant, veuillez saisir vos coordonnées ci-dessous.
+                    Si vous êtes un nouveau client, veuillez renseigner la section facturation.
+                </mat-panel-description>
+                <app-connexion-form></app-connexion-form>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+        <app-nouveau-client-form *ngIf="utilisateur.role != 'ROLE_CLIENT'"></app-nouveau-client-form>
+        <app-details-client *ngIf="utilisateur.role == 'ROLE_CLIENT'"></app-details-client>
+
+        <div class="btn-action" *ngIf="utilisateur.role == 'ROLE_CLIENT'">
+            <button mat-raised-button (click)="onModifierCompte()">Modifier le compte</button>
+            <button mat-raised-button color="primary" matStepperNext>Valider</button>
+        </div>
+    </mat-step>
+
+    <mat-step label="Votre commande">
+
+        <app-commande-details></app-commande-details>
+
+        <div class="btn-action">
+            <button mat-raised-button matStepperPrevious>Retour</button>
+            <button mat-raised-button color="primary" matStepperNext>Valider la commande</button>
+        </div>
+    </mat-step>
+
+    <mat-step label="Paiement">
+
+        <app-paiement></app-paiement>
+
+        <div class="btn-action">
+            <button mat-raised-button matStepperPrevious>Retour</button>
+            <button mat-raised-button color="primary" (click)="onPayer()">Payer</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

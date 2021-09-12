@@ -1,6 +1,5 @@
 package fr.formation.epicerievracprojet.services;
 
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -65,32 +64,29 @@ public class ClientService {
 		});
 		c.getPanier().setClient(c);
 		c.getPanier().getArticles().forEach(a -> {
-			System.out.println(a);
 			a.getId().setAchat(c.getPanier());
 			lar.save(a);
 		});
 	}
 	
 	@Transactional
-	public void saveCommande(int id) {
+	public void saveCommande(int id, Commande co) {
 		Client c = cr.findById(id).get();
 		
-		Commande co = new Commande();
 		cor.save(co);
-		co.setPrixTotal(c.getPanier().getPrixTotal());
-		co.setArticles(c.getPanier().getArticles());
 		co.setNumeroCommande((int) Math.random() * 100000);
-		LocalDate todaysDate = LocalDate.now();
-		co.setDateCommande(todaysDate);
+		co.setClient(c);
+		co.getArticles().forEach(a -> {
+			a.getId().setAchat(co);
+			lar.save(a);
+		});
 		
 		Facture f = new Facture();
-		fr.save(f);
 		f.setNumeroFacture((int) Math.random() * 100000);
 		f.setCommande(co);
+		fr.save(f);
 		
-		c.getPanier().getArticles().clear();
-		c.getPanier().setPrixTotal(0);
-		
+		//A FAIRE : Vider le panier dans la BDD
 	}
 	
 	public void update(Client c) {

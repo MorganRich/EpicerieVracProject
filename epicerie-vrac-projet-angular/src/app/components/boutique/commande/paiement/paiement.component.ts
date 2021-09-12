@@ -20,8 +20,4 @@ export class PaiementComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onCommander(): void {
-    this._cs.saveCommande(this._aus.utilisateur.id).subscribe(() => console.log("Commande réussi"));
-  }
-
 }

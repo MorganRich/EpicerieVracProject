@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -16,10 +16,16 @@ export class ConnexionFormComponent implements OnInit {
     seSouvenir: new FormControl(false)
   });
 
+  public route: UrlSegment[] = [];
+  
   constructor(private _as:AuthenticationService,
-              private _r: Router) { }
+              private _r: Router,
+              private _ar: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this._ar.url.subscribe(ar => {
+      this.route = ar;
+    });
   }
 
   get email() {
@@ -31,9 +37,13 @@ export class ConnexionFormComponent implements OnInit {
   }
 
   onConnexion(): void {
-    console.log(this.connexionForm.controls.email.value + " " + this.connexionForm.controls.password.value);
     this._as.signin(this.connexionForm.controls.email.value, this.connexionForm.controls.password.value).subscribe(
-      () => this._r.navigateByUrl("/boutique"));
+      () => {
+        if (this.route[0].path == "commande")
+          this._r.navigateByUrl("/commande");
+        else
+          this._r.navigateByUrl("/boutique");
+      });
   }
 
 }

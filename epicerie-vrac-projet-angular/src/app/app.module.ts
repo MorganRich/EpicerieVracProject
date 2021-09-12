@@ -24,6 +24,9 @@ import { ArticleAddComponent } from './components/boutique/article-add/article-a
 import { ArticleDetailsDialogComponent } from './components/boutique/article-details-dialog/article-details-dialog.component';
 import { NouveauClientFormComponent } from './components/utilisateur/nouveau-client-form/nouveau-client-form.component';
 import { PaiementComponent } from './components/boutique/commande/paiement/paiement.component';
+import { CommandePageComponent } from './components/boutique/commande/commande-page/commande-page.component';
+import { DetailsClientComponent } from './components/utilisateur/details-client/details-client.component';
+import { CommandeDetailsComponent } from './components/boutique/commande/commande-details/commande-details.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { PaiementComponent } from './components/boutique/commande/paiement/paiem
     ArticleDetailsDialogComponent,
     NouveauClientFormComponent,
     PaiementComponent,
+    CommandePageComponent,
+    DetailsClientComponent,
+    CommandeDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -18,7 +18,6 @@ export class NavigationHeaderComponent implements OnInit {
   ngOnInit(): void {
     this._ar.url.subscribe(r => {
       this.route = r;
-      console.log(this.route);
     });
   }
 

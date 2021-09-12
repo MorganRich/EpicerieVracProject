@@ -28,7 +28,7 @@ public class Client extends Utilisateur {
 	@Where(clause = "DTYPE = 'Panier'")
 	private Panier panier;
 	
-	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "client")
 	@Where(clause = "DTYPE = 'Commande'")
 	private Set<Commande> commandes = new TreeSet<>();
 	

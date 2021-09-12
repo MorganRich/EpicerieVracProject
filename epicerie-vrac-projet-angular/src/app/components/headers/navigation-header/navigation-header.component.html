@@ -1,4 +1,4 @@
 <mat-toolbar>
-	<span>{{route[0]}}</span>
-	<span *ngFor="let f of route; let last = last">{{f}}{{!last ? '>' : ''}}</span> 
+	<span>{{route[0].path}}</span>
+	<span *ngFor="let f of route; let last = last">{{f.path}}{{!last ? '>' : ''}}</span> 
 </mat-toolbar>

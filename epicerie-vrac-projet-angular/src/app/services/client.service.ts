@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Client } from '../models/client';
+import { Commande } from '../models/commande';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,10 @@ export class ClientService {
     return this._hc.post(this._clientsUrl, c);
   }
 
-  saveCommande(id: number): Observable<any> {
-    return this._hc.post(this._clientsUrl + "/commande", id);
+  saveCommande(id: number, commande: Commande): Observable<any> {
+    console.log(id);
+    console.log(commande);
+    return this._hc.post(this._clientsUrl + "/commande/" + id, commande);
   }
 
   update(c: Client): Observable<any> {

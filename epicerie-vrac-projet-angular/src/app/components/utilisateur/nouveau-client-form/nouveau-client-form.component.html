@@ -1,0 +1,92 @@
+<div class="formulaires">
+    <form class="formulaire" #formulairePrincipal=ngForm>
+        <h1>Détails de facturation</h1>
+        <mat-divider></mat-divider>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Prenom</mat-label>
+                <input matInput type="text" [(ngModel)]="client.personne.prenom" name="client.personne.prenom" required>
+            </mat-form-field>
+            <mat-form-field class="nom" appearance="fill">
+                <mat-label>Nom</mat-label>
+                <input matInput type="text" [(ngModel)]="client.personne.nom" name="client.personne.nom" required>
+            </mat-form-field>
+        </div>
+        <mat-form-field appearance="fill">
+            <mat-label>Pays</mat-label>
+            <input matInput disabled value="France" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Numéro de voie</mat-label>
+            <input matInput type="number" [(ngModel)]="adresse1.numero" name="adresse1.numero" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Type de voie</mat-label>
+            <input matInput type="text" [(ngModel)]="adresse1.typeDeVoie" name="adresse1.typeDeVoie" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Complément d'adresse</mat-label>
+            <input matInput type="text" placeholder="Bâtiment, appartement... (facultatif)"
+                [(ngModel)]="adresse1.complement" name="adresse1.complement">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Code postal</mat-label>
+            <input matInput type="text" [(ngModel)]="adresse1.codePostal" name="adresse1.codePostal" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Ville</mat-label>
+            <input matInput type="text" [(ngModel)]="adresse1.ville" name="adresse1.ville" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Téléphone</mat-label>
+            <input matInput type="text" [(ngModel)]="client.personne.numeroTelephone"
+                name="client.personne.numeroTelephone" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="client.email" name="client.email" required>
+        </mat-form-field>
+        <mat-checkbox [(ngModel)]="creationCompte" name="creationCompte">Créer un compte ?</mat-checkbox>
+        <mat-form-field *ngIf="creationCompte" appearance="fill">
+            <mat-label>Créer le mot de passe du compte</mat-label>
+            <input matInput type="password" [(ngModel)]="client.password" name="client.password" required>
+        </mat-form-field>
+    </form>
+
+    <form class="formulaire" #formulaireAdresse=ngForm>
+        <mat-checkbox [(ngModel)]="adresseDifferente" name="adresseDifferente">
+            <h1>Expédier à une adresse différente ?</h1>
+        </mat-checkbox>
+        <mat-divider></mat-divider>
+        <mat-form-field *ngIf="adresseDifferente" appearance="fill">
+            <mat-label>Pays</mat-label>
+            <input matInput disabled value="France" required>
+        </mat-form-field>
+        <mat-form-field *ngIf="adresseDifferente" appearance="fill">
+            <mat-label>Numéro de voie</mat-label>
+            <input matInput type="number" [(ngModel)]="adresse2.numero" name="adresse2.numero" required>
+        </mat-form-field>
+        <mat-form-field *ngIf="adresseDifferente" appearance="fill">
+            <mat-label>Type de voie</mat-label>
+            <input matInput type="text" [(ngModel)]="adresse2.typeDeVoie" name="adresse2.typeDeVoie" required>
+        </mat-form-field>
+        <mat-form-field *ngIf="adresseDifferente" appearance="fill">
+            <mat-label>Complément d'adresse</mat-label>
+            <input matInput type="text" placeholder="Bâtiment, appartement... (facultatif)"
+                [(ngModel)]="adresse2.complement" name="adresse2.complement">
+        </mat-form-field>
+        <mat-form-field *ngIf="adresseDifferente" appearance="fill">
+            <mat-label>Code postal</mat-label>
+            <input matInput type="text" [(ngModel)]="adresse2.codePostal" name="adresse2.codePostal" required>
+        </mat-form-field>
+        <mat-form-field *ngIf="adresseDifferente" appearance="fill">
+            <mat-label>Ville</mat-label>
+            <input matInput type="text" [(ngModel)]="adresse2.ville" name="adresse2.ville" required>
+        </mat-form-field>
+    </form>
+</div>
+<div class="actionForm">
+    <button mat-raised-button color="primary"
+        [disabled]="!formulairePrincipal.valid || !formulaireAdresse.valid"
+        (click)="onEnregistrer()">Enregistrer</button>
+</div>

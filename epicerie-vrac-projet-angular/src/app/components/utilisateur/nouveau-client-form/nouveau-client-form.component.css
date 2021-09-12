@@ -1,0 +1,26 @@
+.formulaires {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.formulaire {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 45%;
+}
+
+mat-divider {
+    margin-bottom: 10px;
+}
+
+.nom {
+    margin-left: 10px;
+}
+
+.actionForm {
+    margin-top: 8px;
+    display: flex;
+    justify-content: flex-end;
+}

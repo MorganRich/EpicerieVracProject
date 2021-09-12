@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotBlank;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,7 +24,6 @@ public class Facture {
 	@GeneratedValue
 	private int id;
 	
-	@NotBlank
 	private int numeroFacture;
 	
 	@OneToOne

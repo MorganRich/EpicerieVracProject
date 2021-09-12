@@ -19,6 +19,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatChipsModule} from '@angular/material/chips';
 import {MaterialFileInputModule} from 'ngx-material-file-input';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {MaterialFileInputModule} from 'ngx-material-file-input';
     MatCheckboxModule,
     MatTreeModule,
     MatChipsModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    MatStepperModule
   ],
   exports: [
     MatToolbarModule,
@@ -64,7 +66,8 @@ import {MaterialFileInputModule} from 'ngx-material-file-input';
     MatCheckboxModule,
     MatTreeModule,
     MatChipsModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    MatStepperModule
   ]
 })
 export class AppMaterialModule { }

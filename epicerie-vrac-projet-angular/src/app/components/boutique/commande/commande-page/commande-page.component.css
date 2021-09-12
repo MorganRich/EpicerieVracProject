@@ -1,0 +1,13 @@
+.stepper {
+    margin-top: 8px;
+}
+
+.btn-action {
+    margin-top: 8px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-action > button {
+    margin: 4px;
+}

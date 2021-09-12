@@ -18,7 +18,7 @@ mat-accordion {
     margin: 5px;
 }
 
-.formulaires {
+/* .formulaires {
     display: flex;
     justify-content: space-around;
     margin-bottom: 10px;
@@ -29,11 +29,11 @@ mat-accordion {
     flex-direction: column;
     margin-top: 20px;
     width: 45%;
-}
+} */
 
-.nom {
+/* .nom {
     margin-left: 10px;
-}
+} */
 
 mat-divider {
     margin-bottom: 20px;

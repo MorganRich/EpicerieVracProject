@@ -1,4 +1,4 @@
-<mat-accordion *ngIf="utilisateur.role != 'ROLE_CLIENT'">
+<!-- <mat-accordion *ngIf="utilisateur.role != 'ROLE_CLIENT'">
     <mat-expansion-panel>
         <mat-expansion-panel-header>
             <mat-panel-title>
@@ -11,9 +11,9 @@
         </mat-panel-description>
         <app-connexion-form></app-connexion-form>
     </mat-expansion-panel>
-</mat-accordion>
+</mat-accordion> -->
 
-<div class="formulaires" *ngIf="utilisateur.role != 'ROLE_CLIENT'">
+<!-- <div class="formulaires" *ngIf="utilisateur.role != 'ROLE_CLIENT'">
     <form class="formulaire">
         <h1>Détails de facturation</h1>
         <mat-divider></mat-divider>
@@ -96,10 +96,10 @@
             <input matInput type="text" [(ngModel)]="adresse2.ville" name="adresse2.ville" required>
         </mat-form-field>
     </form>
-</div>
+</div> -->
 
-<mat-divider></mat-divider>
-<h1>Votre commande</h1>
+<!-- <mat-divider></mat-divider>
+<h1>Votre commande</h1> -->
 
 <table mat-table [dataSource]="panier.articles" class="mat-elevation-z8">
     <ng-container matColumnDef="produit">
@@ -121,6 +121,6 @@
     <tr mat-footer-row *matFooterRowDef="['produit', 'sousTotal']"></tr>
 </table>
 
-<div class="valider">
-    <button mat-raised-button color="primary" (click)="onCommander()" >Commander</button>
-</div>
+<!-- <div class="valider">
+    <button mat-raised-button color="primary" (click)="onCommander()">Commander</button>
+</div> -->
