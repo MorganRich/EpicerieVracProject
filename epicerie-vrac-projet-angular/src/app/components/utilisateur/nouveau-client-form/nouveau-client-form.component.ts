@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Adresse } from 'src/app/models/adresse';
 import { Client } from 'src/app/models/client';
@@ -34,10 +34,13 @@ export class NouveauClientFormComponent implements OnInit {
   onEnregistrer() {
     if (this.creationCompte) {
       this.client.personne.adresses.push(this.adresse1);
-      if (this.adresseDifferente)
+      if (this.adresseDifferente) {
+        this.adresse2.id = 1;
         this.client.personne.adresses.push(this.adresse2);
+      }
       this.client.role = "ROLE_CLIENT"
       this.client.panier = this.panier;
+      console.log(this.client);
       this._cs.save(this.client).subscribe(() => {
         this._aus.signin(this.client.email, this.client.password).subscribe(() => {
           this._r.navigateByUrl("commande");

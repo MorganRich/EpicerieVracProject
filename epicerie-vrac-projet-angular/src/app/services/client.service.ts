@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Client } from '../models/client';
 import { Commande } from '../models/commande';
+import { Panier } from '../models/panier';
 
 @Injectable({
   providedIn: 'root'
@@ -27,9 +28,13 @@ export class ClientService {
   }
 
   saveCommande(id: number, commande: Commande): Observable<any> {
-    console.log(id);
-    console.log(commande);
     return this._hc.post(this._clientsUrl + "/commande/" + id, commande);
+  }
+
+  savePanier(id: number, panier: Panier): Observable<any> {
+    console.log(id);
+    console.log(panier);
+    return this._hc.post(this._clientsUrl + "/panier/" + id, panier);
   }
 
   update(c: Client): Observable<any> {

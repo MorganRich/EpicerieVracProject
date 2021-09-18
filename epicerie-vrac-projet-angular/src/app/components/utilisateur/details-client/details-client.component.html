@@ -1,1 +1,27 @@
-<p>details-client works!</p>
+<div class="profil">
+    <div>
+        <p>Prénom : </p>
+        <p>Nom : </p>
+        <p>Adresse E-mail : </p>
+        <p>N° téléphone : </p>
+    </div>
+    <div>
+        <p> {{ client.personne.prenom }}</p>
+        <p> {{ client.personne.nom }}</p>
+        <p> {{ client.email }}</p>
+        <p> {{ client.personne.numeroTelephone }}</p>
+    </div>
+    <div>
+        <h2 *ngIf="client.personne.adresses.length > 1">Adresse de facturation</h2>
+        <h2 *ngIf="client.personne.adresses.length == 1">Adresse de facturation et de livraison</h2>
+        <p>{{ client.personne.adresses[0].numero }} {{ client.personne.adresses[0].typeDeVoie }}</p>
+        <p>{{ client.personne.adresses[0].complement }}</p>
+        <p>{{ client.personne.adresses[0].codePostal }} {{ client.personne.adresses[0].ville }}</p>
+    </div>
+    <div *ngIf="client.personne.adresses.length > 1">
+        <h2>Adresse de livraison</h2>
+        <p>{{ client.personne.adresses[1].numero }} {{ client.personne.adresses[1].typeDeVoie }}</p>
+        <p>{{ client.personne.adresses[1].complement }}</p>
+        <p>{{ client.personne.adresses[1].codePostal }} {{ client.personne.adresses[1].ville }}</p>
+    </div>
+</div>

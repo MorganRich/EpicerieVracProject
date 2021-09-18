@@ -1,0 +1,47 @@
+<table mat-table [dataSource]="panier.articles" class="mat-elevation-z8">
+    <ng-container matColumnDef="produit">
+        <th mat-header-cell *matHeaderCellDef> Produit </th>
+        <td mat-cell *matCellDef="let la">
+            <img matListAvatar routerLink="/article/{{la.id.article.id}}" [src]="getUrlImage(la.id.article)"
+                alt="Photo du produit">
+            <a mat-line routerLink="/article/{{la.id.article.id}}"><strong>{{la.id.article.nom}}</strong></a>
+        </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+    <ng-container matColumnDef="prix">
+        <th mat-header-cell *matHeaderCellDef> Prix </th>
+        <td mat-cell *matCellDef="let la"> {{la.id.article.prixUnitaire | number:'1.2'}} € </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+    <ng-container matColumnDef="quantite">
+        <th mat-header-cell *matHeaderCellDef> Quantité </th>
+        <td mat-cell *matCellDef="let la; let i = index">
+            <button mat-raised-button (click)="onDiminuer(i)">
+                <mat-icon>remove</mat-icon>
+            </button>
+            <span class="quantite">{{la.quantite}}</span>
+            <button mat-raised-button (click)="onAugmenter(i)">
+                <mat-icon>add</mat-icon>
+            </button>
+        </td>
+        <td mat-footer-cell *matFooterCellDef>Total</td>
+    </ng-container>
+    <ng-container matColumnDef="sousTotal">
+        <th mat-header-cell *matHeaderCellDef> Sous-total </th>
+        <td mat-cell *matCellDef="let la"> {{la.id.article.prixUnitaire * la.quantite | number:'1.2'}} € </td>
+        <td mat-footer-cell *matFooterCellDef> {{panier.prixTotal | number:'1.2'}} €</td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element; let i = index">
+            <button mat-icon-button (click)="onSupprimer(i)">
+                <mat-icon>close</mat-icon>
+            </button>
+        </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['produit', 'prix', 'quantite', 'sousTotal', 'action']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['produit', 'prix', 'quantite', 'sousTotal', 'action'];"></tr>
+    <tr mat-footer-row *matFooterRowDef="['produit', 'prix', 'quantite', 'sousTotal', 'action']"></tr>
+</table>

@@ -1,0 +1,7 @@
+.profil {
+    display: flex;
+}
+
+.profil > div {
+    margin-left: 60px;
+}

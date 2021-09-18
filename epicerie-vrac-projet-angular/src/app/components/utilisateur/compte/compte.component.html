@@ -1,0 +1,39 @@
+<h1>MON COMPTE</h1>
+<app-details-client [utilisateur]="utilisateur"></app-details-client>
+
+<h1>MON PANIER EN COURS</h1>
+<app-panier-details *ngIf="client.panier.prixTotal != 0" [panier]="client.panier"></app-panier-details>
+<p *ngIf="client.panier.prixTotal == 0">Votre panier est pour le moment vide !!</p>
+
+<h1>MES COMMANDES</h1>
+<p *ngIf="client.commandes.length == 0">Vous n'avez pas encore effectué de commande !!</p>
+<mat-accordion>
+    <mat-expansion-panel 
+    (opened)="panelOpenState = true" 
+    (closed)="panelOpenState = false"
+    *ngFor="let c of client.commandes">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Commande n°{{ c.numeroCommande }} du {{ c.dateCommande }}
+            </mat-panel-title>
+            <mat-panel-description>
+                Montant de la commande : {{ c.prixTotal | number:'1.2'}} €
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <table mat-table [dataSource]="c.articles" class="mat-elevation-z8">
+            <ng-container matColumnDef="produit">
+                <th mat-header-cell *matHeaderCellDef> Produit </th>
+                <td mat-cell *matCellDef="let la">
+                    <img matListAvatar routerLink="/article/{{la.id.article.id}}" [src]="getUrlImage(la.id.article)" alt="Photo du produit">
+                    <span>{{la.id.article.nom}}<strong> x {{la.quantite}}</strong></span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="sousTotal">
+                <th mat-header-cell *matHeaderCellDef> Sous-total </th>
+                <td mat-cell *matCellDef="let la"> {{la.id.article.prixUnitaire * la.quantite | number:'1.2'}} € </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="['produit', 'sousTotal']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['produit', 'sousTotal'];"></tr>
+        </table>
+    </mat-expansion-panel>
+</mat-accordion>

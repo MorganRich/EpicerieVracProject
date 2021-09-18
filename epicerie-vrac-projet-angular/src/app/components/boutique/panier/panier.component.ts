@@ -16,27 +16,10 @@ export class PanierComponent implements OnInit {
   public panier: Panier = new Client().panier;
 
   constructor(private _gps: GestionPanierService,
-              private _as: ArticleService,
               private _r: Router) { }
 
   ngOnInit(): void {
     this._gps.panierSubject.subscribe(p => this.panier = p);
-  }
-
-  getUrlImage(article: Article): string {
-    return this._as.image(article);
-  }
-
-  onSupprimer(index: number): void {
-    this._gps.supprimerArticle(index);
-  }
-
-  onAugmenter(index: number): void {
-    this._gps.augmenterQuantite(index);
-  }
-
-  onDiminuer(index: number): void {
-    this._gps.diminuerQuantite(index);
   }
 
   onCommander(): void {

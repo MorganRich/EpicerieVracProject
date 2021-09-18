@@ -43,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	private final RequestMatcher AUTHENTICATED_URL = new OrRequestMatcher(
 			new AntPathRequestMatcher("/clients/**", "GET"),
+			new AntPathRequestMatcher("/clients/panier/**", "POST"),
 			new AntPathRequestMatcher("/clients/commande/**", "POST"),
 			new AntPathRequestMatcher("/clients/**", "PUT"),
 			new AntPathRequestMatcher("/clients/**", "DELETE"));

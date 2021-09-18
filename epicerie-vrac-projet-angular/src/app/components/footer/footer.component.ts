@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Client } from 'src/app/models/client';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  public connected: boolean = false;
+  
+  constructor(private _as: AuthenticationService) { }
 
   ngOnInit(): void {
+    this._as.connectedSubject.subscribe(cs => this.connected = cs);
   }
 
 }

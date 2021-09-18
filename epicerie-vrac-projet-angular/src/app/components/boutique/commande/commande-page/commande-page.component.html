@@ -17,7 +17,7 @@
         </mat-accordion>
 
         <app-nouveau-client-form *ngIf="utilisateur.role != 'ROLE_CLIENT'"></app-nouveau-client-form>
-        <app-details-client *ngIf="utilisateur.role == 'ROLE_CLIENT'"></app-details-client>
+        <app-details-client [utilisateur]="utilisateur" *ngIf="utilisateur.role == 'ROLE_CLIENT'"></app-details-client>
 
         <div class="btn-action" *ngIf="utilisateur.role == 'ROLE_CLIENT'">
             <button mat-raised-button (click)="onModifierCompte()">Modifier le compte</button>
@@ -31,6 +31,7 @@
 
         <div class="btn-action">
             <button mat-raised-button matStepperPrevious>Retour</button>
+            <button mat-raised-button (click)="onModifierCommande()">Modifier la commande</button>
             <button mat-raised-button color="primary" matStepperNext>Valider la commande</button>
         </div>
     </mat-step>

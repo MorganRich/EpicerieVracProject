@@ -33,14 +33,20 @@ export class CommandePageComponent implements OnInit {
     this._aus.utilisateurSubject.subscribe(u => this.utilisateur = u);
   }
 
-  onModifierCompte() {
+  onModifierCompte(): void {
     this._r.navigateByUrl("mon-compte");
+  }
+
+  onModifierCommande(): void {
+    this._r.navigateByUrl("panier");
   }
 
   onPayer(): void {
     this.commande.articles = this._gps.panier.articles;
     this.commande.prixTotal = this._gps.panier.prixTotal;
-    this._cs.saveCommande(this._aus.utilisateur.id, this.commande).subscribe(() => this._r.navigateByUrl("mon-compte"));
+    this._cs.saveCommande(this._aus.utilisateur.id, this.commande).subscribe(() => {
+        this._r.navigateByUrl("mon-compte");
+    });
   }
 
 }

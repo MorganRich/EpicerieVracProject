@@ -29,7 +29,8 @@
         <ul>
             <li>
                 <i class="fas fa-user"></i>
-                <a routerLink="/mon-compte">Mon compte</a>
+                <a *ngIf="connected == false" routerLink="/connexion">Connexion</a>
+                <a *ngIf="connected == true" routerLink="/mon-compte">Mon compte</a>
             </li>
             <li>
                 <i class="fas fa-truck-loading"></i>

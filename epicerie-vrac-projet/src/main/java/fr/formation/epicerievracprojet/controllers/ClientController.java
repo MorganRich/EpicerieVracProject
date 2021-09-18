@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.formation.epicerievracprojet.models.Client;
 import fr.formation.epicerievracprojet.models.Commande;
+import fr.formation.epicerievracprojet.models.Panier;
 import fr.formation.epicerievracprojet.models.Utilisateur;
 import fr.formation.epicerievracprojet.repositories.UtilisateurRepository;
 import fr.formation.epicerievracprojet.services.ClientService;
@@ -49,9 +50,12 @@ public class ClientController {
 	
 	@PostMapping("/commande/{id}")
 	public void saveCommande(@PathVariable int id, @RequestBody Commande c) {
-		System.out.println(id);
-		System.out.println(c);
 		cs.saveCommande(id, c);
+	}
+	
+	@PostMapping("/panier/{id}")
+	public void savePanier(@PathVariable int id, @RequestBody Panier p) {
+		cs.savePanier(id, p);
 	}
 	
 	@PostMapping("/admin")

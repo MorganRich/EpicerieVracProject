@@ -3,6 +3,7 @@ package fr.formation.epicerievracprojet.services;
 import java.util.Collection;
 import java.util.Optional;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.formation.epicerievracprojet.models.Client;
 import fr.formation.epicerievracprojet.models.Commande;
 import fr.formation.epicerievracprojet.models.Facture;
+import fr.formation.epicerievracprojet.models.Panier;
 import fr.formation.epicerievracprojet.repositories.AdresseRepository;
 import fr.formation.epicerievracprojet.repositories.ClientRepository;
 import fr.formation.epicerievracprojet.repositories.CommandeRepository;
@@ -49,7 +51,6 @@ public class ClientService {
 	}
 	
 	public Optional<Client> findById(int id) {
-		System.out.println("service");
 		return cr.findById(id);
 	}
 	
@@ -85,8 +86,25 @@ public class ClientService {
 		f.setNumeroFacture((int) Math.random() * 100000);
 		f.setCommande(co);
 		fr.save(f);
+	}
+	
+	@Transactional
+	public void savePanier(int id, Panier p) {
+		Client c = cr.findById(id).get();
+		System.out.println(c.getPanier());
+		System.out.println(p);
 		
-		//A FAIRE : Vider le panier dans la BDD
+		c.getPanier().setPrixTotal(p.getPrixTotal());
+		c.getPanier().getArticles().clear();
+		c.getPanier().setArticles(p.getArticles());
+		
+		System.out.println(c.getPanier());
+		c.getPanier().getArticles().forEach(la -> System.out.println(la.getId()));
+		System.out.println(p);
+		p.getArticles().forEach(la -> System.out.println(la.getId()));
+		
+		// save ne fonctionne pas, à faire pour sauvegarder le panier !!
+		cr.save(c);
 	}
 	
 	public void update(Client c) {
