@@ -32,8 +32,6 @@ export class ClientService {
   }
 
   savePanier(id: number, panier: Panier): Observable<any> {
-    console.log(id);
-    console.log(panier);
     return this._hc.post(this._clientsUrl + "/panier/" + id, panier);
   }
 

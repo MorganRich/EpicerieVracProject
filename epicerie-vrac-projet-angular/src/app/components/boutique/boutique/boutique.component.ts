@@ -4,6 +4,7 @@ import { Client } from 'src/app/models/client';
 import { Utilisateur } from 'src/app/models/utilisateur';
 import { ArticleService } from 'src/app/services/article.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { GestionPanierService } from 'src/app/services/gestion-panier.service';
 
 interface NombreProduit {
   value: number;
@@ -42,7 +43,8 @@ export class BoutiqueComponent implements OnInit {
   public utilisateur: Client = new Client();
 
   constructor(private _as: ArticleService,
-              private _aus: AuthenticationService) { }
+              private _aus: AuthenticationService,
+              private _gsp: GestionPanierService) { }
 
   ngOnInit(): void {
     this.getData();

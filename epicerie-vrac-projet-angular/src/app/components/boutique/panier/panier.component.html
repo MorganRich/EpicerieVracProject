@@ -2,6 +2,7 @@
 
 <app-panier-details [panier]="panier"></app-panier-details>
 
-<div class="valider">
-    <button mat-raised-button color="primary" (click)="onCommander()" [disabled]="panier.articles.length == 0">Valider la commande</button>
+<div class="actions">
+    <button mat-raised-button (click)="onViderPanier()" [disabled]="panier.articles.length == 0">Vider le panier</button>
+    <button mat-raised-button color="primary" (click)="onCommander()" [disabled]="panier.articles.length == 0">Commander</button>
 </div>

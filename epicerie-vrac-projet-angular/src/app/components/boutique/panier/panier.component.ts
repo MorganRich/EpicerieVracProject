@@ -26,4 +26,9 @@ export class PanierComponent implements OnInit {
     this._r.navigateByUrl("/commande");
   }
 
+  onViderPanier(): void {
+    this._gps.viderPanier();
+    this._r.navigateByUrl("/boutique");
+  }
+
 }

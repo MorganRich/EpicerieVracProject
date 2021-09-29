@@ -45,6 +45,7 @@ export class CommandePageComponent implements OnInit {
     this.commande.articles = this._gps.panier.articles;
     this.commande.prixTotal = this._gps.panier.prixTotal;
     this._cs.saveCommande(this._aus.utilisateur.id, this.commande).subscribe(() => {
+        this._gps.viderPanier();
         this._r.navigateByUrl("mon-compte");
     });
   }

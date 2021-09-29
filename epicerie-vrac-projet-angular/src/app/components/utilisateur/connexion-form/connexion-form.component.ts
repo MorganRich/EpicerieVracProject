@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ClientService } from 'src/app/services/client.service';
+import { GestionPanierService } from 'src/app/services/gestion-panier.service';
 
 @Component({
   selector: 'app-connexion-form',
@@ -18,7 +20,9 @@ export class ConnexionFormComponent implements OnInit {
 
   public route: UrlSegment[] = [];
   
-  constructor(private _as:AuthenticationService,
+  constructor(private _as: AuthenticationService,
+              private _cs: ClientService,
+              private _gps: GestionPanierService,
               private _r: Router,
               private _ar: ActivatedRoute) { }
 
@@ -39,10 +43,20 @@ export class ConnexionFormComponent implements OnInit {
   onConnexion(): void {
     this._as.signin(this.connexionForm.controls.email.value, this.connexionForm.controls.password.value).subscribe(
       () => {
-        if (this.route[0].path == "commande")
+        if (this.route[0].path == "commande") {
+          this._cs.savePanier(this._as.utilisateur.id, this._gps.panier).subscribe(() => console.log("save panier ok !!"));
           this._r.navigateByUrl("/commande");
-        else
+        }
+        else {
+          if (this._gps.panier.articles.length == 0) {
+            this._cs.findById(this._as.utilisateur.id).subscribe((c) => this._gps.initialiserPanier(c.panier));
+          }
+          else if (this._gps.panier.articles.length > 0) {
+            this._cs.savePanier(this._as.utilisateur.id, this._gps.panier).subscribe(() => console.log("save panier ok !!"));
+          }
           this._r.navigateByUrl("/boutique");
+        }
+          
       });
   }
 

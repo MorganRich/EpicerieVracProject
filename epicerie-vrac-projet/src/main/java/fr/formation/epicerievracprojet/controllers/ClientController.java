@@ -55,7 +55,7 @@ public class ClientController {
 	
 	@PostMapping("/panier/{id}")
 	public void savePanier(@PathVariable int id, @RequestBody Panier p) {
-		cs.savePanier(id, p);
+		cs.updatePanier(id, p);
 	}
 	
 	@PostMapping("/admin")
