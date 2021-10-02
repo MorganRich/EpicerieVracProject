@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { PagingAndSortingConfig } from 'src/app/interfaces/paging-and-sorting-config';
 import { Article } from 'src/app/models/article';
 import { Client } from 'src/app/models/client';
-import { Utilisateur } from 'src/app/models/utilisateur';
 import { ArticleService } from 'src/app/services/article.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { GestionPanierService } from 'src/app/services/gestion-panier.service';
 
 interface NombreProduit {
   value: number;
@@ -23,38 +22,39 @@ interface TriProduit {
 })
 export class BoutiqueComponent implements OnInit {
 
-  nbProduits: NombreProduit[] = [
-    {value: 50, viewValue: 'Montrer 50 produits'},
-    {value: 100, viewValue: 'Montrer 100 produits'},
-    {value: 150, viewValue: 'Montrer 150 produits'}
+  public nbProduits: NombreProduit[] = [
+    {value: 5, viewValue: 'Montrer 5 produits'},
+    {value: 10, viewValue: 'Montrer 10 produits'},
+    {value: 15, viewValue: 'Montrer 15 produits'}
   ];
-  selectedNombreProduit = this.nbProduits[0].value;
 
-  triProduits: TriProduit[] = [
-    {value: "Nom", viewValue: 'Trier par Nom'},
-    {value: "Prix", viewValue: 'Trier par Prix'}
+  public triProduits: TriProduit[] = [
+    {value: "nom", viewValue: 'Trier par Nom'},
+    {value: "prixUnitaire", viewValue: 'Trier par Prix'}
   ];
-  selectedTriProduit = this.triProduits[0].value;
+
+  public pagingAndSorting: PagingAndSortingConfig = {
+    pageNo: 0, pageSize: 10,
+    sortBy: "id", sortOrder: "descending"
+  };
 
   public articles: Article[] = [];
   public display: string | null = "";
-  public tri: string | null = "";
 
   public utilisateur: Client = new Client();
 
   constructor(private _as: ArticleService,
-              private _aus: AuthenticationService,
-              private _gsp: GestionPanierService) { }
+              private _aus: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.getData();
+    this._as.findAll().subscribe(articles => this.articles = articles);
     this.display = localStorage.getItem("display") != null ? localStorage.getItem("display") : "list";
-    this.tri = localStorage.getItem("tri") != null ? localStorage.getItem("tri"): "up";
     this._aus.utilisateurSubject.subscribe(us => this.utilisateur = us);
   }
 
-  getData(): void {
-    this._as.findAll().subscribe(articles => this.articles = articles);
+  getDataWithPagingAndSorting(): void {
+    console.log(this.pagingAndSorting);
+    this._as.findAllWithPagingAndSorting(this.pagingAndSorting).subscribe(a => this.articles = a);
   }
 
   getUrlImage(a: Article): string {
@@ -66,14 +66,30 @@ export class BoutiqueComponent implements OnInit {
     localStorage.setItem("display", d);
   }
 
-  onTriChange(d: string): void {
-    this.tri = d;
-    localStorage.setItem("tri", d);
+  onOrderChange(ordre: string): void {
+    this.pagingAndSorting.sortOrder = ordre;
+    this.getDataWithPagingAndSorting();
+  }
+
+  onSelectionChange(): void {
+    this.pagingAndSorting.pageNo = 0;
+    this.getDataWithPagingAndSorting();
+  }
+
+  onPreviousPage(): void {
+    this.pagingAndSorting.pageNo = this.pagingAndSorting.pageNo - 1;
+    this.getDataWithPagingAndSorting();
+  }
+
+  onNextPage(): void {
+    this.pagingAndSorting.pageNo = this.pagingAndSorting.pageNo + 1;
+    console.log(this.articles.length);
+    this.getDataWithPagingAndSorting();
   }
 
   deleteById(id: number): void {
     this._as.deleteById(id).subscribe(() => {
-      this.getData();
+      this._as.findAll().subscribe(articles => this.articles = articles);
       console.log("suppression OK");
     })
   }

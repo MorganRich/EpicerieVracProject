@@ -6,3 +6,10 @@
 mat-button-toggle-group {
     margin: 10px;
 }
+
+.page {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    margin-right: 50px;
+}

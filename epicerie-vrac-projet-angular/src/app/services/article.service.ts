@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { PagingAndSortingConfig } from '../interfaces/paging-and-sorting-config';
 import { Article } from '../models/article';
 import { Categorie } from '../models/categorie';
 
@@ -16,6 +17,10 @@ export class ArticleService {
 
   findAll(): Observable<Article[]> {
     return this._hc.get<Article[]>(this._articlesUrl);
+  }
+
+  findAllWithPagingAndSorting(ps: PagingAndSortingConfig): Observable<Article[]> {
+    return this._hc.get<Article[]>(this._articlesUrl + "?pageSize=" + ps.pageSize + "&pageNo=" + ps.pageNo + "&sortBy=" + ps.sortBy + "&sortOrder=" + ps.sortOrder);
   }
 
   findAllCategorie(): Observable<Categorie[]> {

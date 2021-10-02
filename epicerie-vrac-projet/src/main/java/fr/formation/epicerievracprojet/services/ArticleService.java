@@ -2,10 +2,15 @@ package fr.formation.epicerievracprojet.services;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,8 +31,17 @@ public class ArticleService {
 	@Autowired
 	private FileService fs;
 	
-	public Collection<Article> findAll() {
-		return ar.findAll();
+	public Collection<Article> findAll(Integer pageNo, Integer pageSize, String sortBy, String sortOrder) {
+		Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
+		if (sortOrder.equals("ascending"))
+			paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
+		
+		Page<Article> pagedResult = ar.findAll(paging);
+		
+		if(pagedResult.hasContent())
+			return pagedResult.getContent();
+		else
+			return new ArrayList<Article>();
 	}
 	
 	public Optional<Article> findById(int id) {

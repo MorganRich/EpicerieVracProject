@@ -1,22 +1,24 @@
 <mat-form-field appearance="outline">
-    <mat-select [(value)]="selectedTriProduit">
+    <mat-label>Tri</mat-label>
+    <mat-select [(value)]="pagingAndSorting.sortBy" (selectionChange)="onSelectionChange()">
         <mat-option *ngFor="let tri of triProduits" [value]="tri.value">
             {{tri.viewValue}}
         </mat-option>
     </mat-select>
 </mat-form-field>
 
-<mat-button-toggle-group #t="matButtonToggleGroup" [value]="tri" (change)="onTriChange(t.value)">
-    <mat-button-toggle value="up">
+<mat-button-toggle-group #sortOrder="matButtonToggleGroup" [value]="pagingAndSorting.sortOrder" (change)="onOrderChange(sortOrder.value)">
+    <mat-button-toggle value="ascending">
         <mat-icon>arrow_upward</mat-icon>
     </mat-button-toggle>
-    <mat-button-toggle value="down">
+    <mat-button-toggle value="descending">
         <mat-icon>arrow_downward</mat-icon>
     </mat-button-toggle>
 </mat-button-toggle-group>
 
 <mat-form-field appearance="outline">
-    <mat-select [(value)]="selectedNombreProduit">
+    <mat-label>Pagination</mat-label>
+    <mat-select [(value)]="pagingAndSorting.pageSize" (selectionChange)="onSelectionChange()">
         <mat-option *ngFor="let nb of nbProduits" [value]="nb.value">
             {{nb.viewValue}}
         </mat-option>
@@ -40,3 +42,8 @@
 <mat-list *ngIf="display == 'list'">
     <app-article-line *ngFor="let a of articles" [article]="a" [urlImage]="getUrlImage(a)" [utilisateur]="utilisateur" (deleteEvent)="deleteById($event)"></app-article-line>
 </mat-list>
+
+<div class="page">
+    <button mat-flat-button (click)="onPreviousPage()" *ngIf="pagingAndSorting.pageNo > 0"><mat-icon>navigate_before</mat-icon> Précédent</button>
+    <button mat-flat-button (click)="onNextPage()" *ngIf="articles.length == pagingAndSorting.pageSize">Suivant <mat-icon>navigate_next</mat-icon></button>
+</div>
