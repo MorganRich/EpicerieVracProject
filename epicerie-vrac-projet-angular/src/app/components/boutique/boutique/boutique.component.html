@@ -34,7 +34,9 @@
     </mat-button-toggle>
 </mat-button-toggle-group>
 
-<a mat-flat-button color="primary" routerLink="/article/add" *ngIf="utilisateur.role == 'ROLE_ADMIN'">Ajouter un nouveau produit</a>
+<a mat-flat-button color="primary" routerLink="/article/add" *ngIf="utilisateur.role == 'ROLE_ADMIN'">
+    Ajouter un nouveau produit
+</a>
 
 <div class="boutique" *ngIf="display == 'grid'">
     <app-article-card *ngFor="let a of articles" [article]="a" [urlImage]="getUrlImage(a)" [utilisateur]="utilisateur" (deleteEvent)="deleteById($event)"></app-article-card>
@@ -44,6 +46,10 @@
 </mat-list>
 
 <div class="page">
-    <button mat-flat-button (click)="onPreviousPage()" *ngIf="pagingAndSorting.pageNo > 0"><mat-icon>navigate_before</mat-icon> Précédent</button>
-    <button mat-flat-button (click)="onNextPage()" *ngIf="articles.length == pagingAndSorting.pageSize">Suivant <mat-icon>navigate_next</mat-icon></button>
+    <button mat-flat-button (click)="onPreviousPage()" *ngIf="pagingAndSorting.pageNo > 0">
+        <mat-icon>navigate_before</mat-icon> Précédent
+    </button>
+    <button mat-flat-button (click)="onNextPage()" *ngIf="articles.length == pagingAndSorting.pageSize">
+        Suivant <mat-icon>navigate_next</mat-icon>
+    </button>
 </div>

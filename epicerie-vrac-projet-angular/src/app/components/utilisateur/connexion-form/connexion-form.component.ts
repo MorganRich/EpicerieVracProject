@@ -56,7 +56,6 @@ export class ConnexionFormComponent implements OnInit {
           }
           this._r.navigateByUrl("/boutique");
         }
-          
       });
   }
 

@@ -65,7 +65,7 @@ public class Article {
 	@PositiveOrZero
 	private int nombreDeConsultation;
 	
-	@ManyToMany(mappedBy = "articles", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "articles", cascade = CascadeType.REMOVE)
 	private Set<Categorie> categories = new HashSet<>();
 	
 	@ManyToMany(mappedBy = "articles")

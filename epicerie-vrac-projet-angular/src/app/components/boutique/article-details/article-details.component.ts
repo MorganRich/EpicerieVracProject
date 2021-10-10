@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from 'src/app/models/article';
 import { Client } from 'src/app/models/client';
@@ -11,7 +11,7 @@ import { GestionPanierService } from 'src/app/services/gestion-panier.service';
   templateUrl: './article-details.component.html',
   styleUrls: ['./article-details.component.css']
 })
-export class ArticleDetailsComponent implements OnInit {
+export class ArticleDetailsComponent implements OnInit, OnDestroy {
 
   public article: Article = new Article();
   public quantite: number = 1;
@@ -33,30 +33,34 @@ export class ArticleDetailsComponent implements OnInit {
     this._aus.utilisateurSubject.subscribe(us => this.utilisateur = us);
   }
 
+  ngOnDestroy(): void {
+    this._aus.utilisateurSubject.unsubscribe();
+  }
+
   getUrlImage(): string {
     return this._as.image(this.article);
   }
 
-  onDownQuantite() {
+  onDownQuantite(): void {
     if (this.quantite > 1)
       this.quantite--;
   }
 
-  onUpQuantite() {
+  onUpQuantite(): void {
     if (this.quantite < this.article.quantiteEnStock)
       this.quantite++;
   }
 
-  onAddPanier() {
+  onAddPanier(): void {
     this._gps.ajouterArticle(this.article, this.quantite);
   }
 
-  onUpdate() {
-
+  onUpdate(): void {
+    // TODO
   }
 
-  onDelete() {
-
+  onDelete(): void {
+    // TODO
   }
 
 }

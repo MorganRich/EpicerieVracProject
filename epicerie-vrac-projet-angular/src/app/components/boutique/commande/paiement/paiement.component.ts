@@ -1,10 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Commande } from 'src/app/models/commande';
-import { Utilisateur } from 'src/app/models/utilisateur';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { ClientService } from 'src/app/services/client.service';
-import { GestionPanierService } from 'src/app/services/gestion-panier.service';
 
 @Component({
   selector: 'app-paiement',
@@ -13,11 +7,8 @@ import { GestionPanierService } from 'src/app/services/gestion-panier.service';
 })
 export class PaiementComponent implements OnInit {
 
-  constructor(private _aus: AuthenticationService,
-              private _cs: ClientService,
-              private _r: Router) { }
+  constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

@@ -18,11 +18,10 @@ export class GestionPanierService {
 
   constructor(private _as: AuthenticationService,
               private _cs: ClientService) {
-                if (localStorage.getItem("panier") != null) {
-                  this.panier = JSON.parse(localStorage.getItem("panier")!);
-                }
-                this.panierSubject.next(this.panier);
-               }
+    if (localStorage.getItem("panier") != null)
+      this.panier = JSON.parse(localStorage.getItem("panier")!);
+    this.panierSubject.next(this.panier);
+  }
 
   initialiserPanier(p: Panier): void {
     this.panier = p;

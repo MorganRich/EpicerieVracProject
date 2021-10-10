@@ -1,5 +1,5 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Commande } from 'src/app/models/commande';
 import { Utilisateur } from 'src/app/models/utilisateur';
@@ -12,9 +12,7 @@ import { GestionPanierService } from 'src/app/services/gestion-panier.service';
   templateUrl: './commande-page.component.html',
   styleUrls: ['./commande-page.component.css']
 })
-export class CommandePageComponent implements OnInit {
-
-  // stepperOrientation: Observable<StepperOrientation>;
+export class CommandePageComponent implements OnInit, OnDestroy {
 
   public utilisateur: Utilisateur = new Utilisateur();
   public commande: Commande = new Commande();
@@ -23,14 +21,14 @@ export class CommandePageComponent implements OnInit {
               private _aus: AuthenticationService,
               private _cs: ClientService,
               private _gps: GestionPanierService,
-              private _r: Router) 
-              {
-    // this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
-    //   .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
-  }
+              private _r: Router) { }
 
   ngOnInit(): void {
     this._aus.utilisateurSubject.subscribe(u => this.utilisateur = u);
+  }
+
+  ngOnDestroy(): void {
+    this._aus.utilisateurSubject.unsubscribe();
   }
 
   onModifierCompte(): void {

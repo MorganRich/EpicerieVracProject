@@ -10,10 +10,7 @@ export class AdminGuard implements CanActivate {
 
   constructor(private _auth: AuthenticationService) {}
   
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      console.log(this._auth.connected + " " + this._auth.utilisateur.role == 'ROLE_ADMIN');
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return (this._auth.connected && this._auth.utilisateur.role == 'ROLE_ADMIN');
   }
   

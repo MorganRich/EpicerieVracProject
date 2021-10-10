@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Article } from 'src/app/models/article';
 import { Client } from 'src/app/models/client';
 import { Panier } from 'src/app/models/panier';
-import { ArticleService } from 'src/app/services/article.service';
 import { GestionPanierService } from 'src/app/services/gestion-panier.service';
 
 @Component({
@@ -11,7 +9,7 @@ import { GestionPanierService } from 'src/app/services/gestion-panier.service';
   templateUrl: './panier.component.html',
   styleUrls: ['./panier.component.css']
 })
-export class PanierComponent implements OnInit {
+export class PanierComponent implements OnInit, OnDestroy {
 
   public panier: Panier = new Client().panier;
 
@@ -20,6 +18,10 @@ export class PanierComponent implements OnInit {
 
   ngOnInit(): void {
     this._gps.panierSubject.subscribe(p => this.panier = p);
+  }
+
+  ngOnDestroy(): void {
+    this._gps.panierSubject.unsubscribe();
   }
 
   onCommander(): void {

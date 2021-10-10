@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Article } from 'src/app/models/article';
 import { Client } from 'src/app/models/client';
-import { AuthenticationService } from 'src/app/services/authentication.service';
 import { GestionPanierService } from 'src/app/services/gestion-panier.service';
 import { ArticleDetailsComponent } from '../article-details/article-details.component';
 
@@ -28,9 +27,7 @@ export class ArticleLineComponent implements OnInit {
   constructor(private _gps: GestionPanierService,
               public dialog: MatDialog) { }
 
-  ngOnInit(): void {
-    console.log(this.urlImage);
-  }
+  ngOnInit(): void { }
 
   onAjouterPanier(): void {
     this._gps.ajouterArticle(this.article, 1);
@@ -40,14 +37,10 @@ export class ArticleLineComponent implements OnInit {
     const dialogRef = this.dialog.open(ArticleDetailsComponent, {
       data: {article: this.article}
     });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
   }
 
   onUpdate(): void {
-
+    // TODO
   }
 
   onDelete(): void {

@@ -1,4 +1,3 @@
-import { Achat } from "./achat";
 import { Article } from "./article"
 
 export class LigneAchatId {

@@ -1,3 +1,5 @@
+<h1>DETAILS PRODUIT</h1>
+
 <p *ngIf="quantiteMax" class="alert alert-danger mt-2" role="alert">
     Vous ne pouvez pas ajouter cette quantité dans le panier
     — nous en avons {{article.quantiteEnStock}} en stock et vous en avez déjà {{quantitePanier}} dans votre panier.
@@ -5,24 +7,31 @@
 <p *ngIf="quantitePanier > 0 && quantitePanier < article.quantiteEnStock" class="alert alert-success mt-2" role="alert">
     <mat-icon>check_circle_outline</mat-icon> {{quantite}}x "{{article.nom}}" ont été ajoutés à votre panier.  
 </p>
+
 <div class="affichage">
-    <img [src]="getUrlImage()" alt="Photo du produit">
+    <img [src]="getUrlImage()" alt="Image du produit">
     <div class="details">
         <h1>{{article.nom}}</h1>
         <p>{{article.prixUnitaire}} € / {{article.uniteMesure}} - {{article.quantiteEnStock}} en stock</p>
+
         <mat-divider></mat-divider>
+
         <p>{{article.description}}</p>
         <p *ngIf="article.bio"><strong>BIO</strong></p>
+
         <div class="action">
             <button mat-raised-button (click)="onDownQuantite()" *ngIf="utilisateur.role != 'ROLE_ADMIN'">
                 <mat-icon>remove</mat-icon>
             </button>
-            <span class="quantite" *ngIf="utilisateur.role != 'ROLE_ADMIN'">{{quantite}}</span>
+            <span class="quantite" *ngIf="utilisateur.role != 'ROLE_ADMIN'">
+                {{quantite}}
+            </span>
             <button mat-raised-button (click)="onUpQuantite()" *ngIf="utilisateur.role != 'ROLE_ADMIN'">
                 <mat-icon>add</mat-icon>
             </button>
-            <button mat-raised-button color="primary" (click)="onAddPanier()" *ngIf="utilisateur.role != 'ROLE_ADMIN'">Ajouter au panier</button>
-            
+            <button mat-raised-button color="primary" (click)="onAddPanier()" *ngIf="utilisateur.role != 'ROLE_ADMIN'">
+                Ajouter au panier
+            </button>
             <button mat-raised-button color="primary" (click)="onUpdate()" *ngIf="utilisateur.role == 'ROLE_ADMIN'">
                 <mat-icon>edit</mat-icon> Mettre à jour
             </button>
@@ -30,6 +39,7 @@
                 <mat-icon>delete</mat-icon> Supprimer le produit
             </button>
         </div>
+        
         <p>Catégories: <span *ngFor="let c of article.categories; let last = last">{{c.nom}}{{!last ? ', ' : ''}}</span>
         </p>
     </div>

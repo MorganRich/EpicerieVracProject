@@ -1,5 +1,5 @@
 export enum UniteMesure {
-    UNITE,
-    KILO,
-    LITRE
+  UNITE,
+  KILO,
+  LITRE
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Adresse } from 'src/app/models/adresse';
 import { Client } from 'src/app/models/client';
@@ -12,7 +12,7 @@ import { GestionPanierService } from 'src/app/services/gestion-panier.service';
   templateUrl: './nouveau-client-form.component.html',
   styleUrls: ['./nouveau-client-form.component.css']
 })
-export class NouveauClientFormComponent implements OnInit {
+export class NouveauClientFormComponent implements OnInit, OnDestroy {
   
   public client: Client = new Client();
   public creationCompte: boolean = false;
@@ -31,6 +31,10 @@ export class NouveauClientFormComponent implements OnInit {
     this._gps.panierSubject.subscribe(p => this.panier = p);
   }
 
+  ngOnDestroy(): void {
+    this._gps.panierSubject.unsubscribe();
+  }
+
   onEnregistrer() {
     if (this.creationCompte) {
       this.client.personne.adresses.push(this.adresse1);
@@ -40,7 +44,6 @@ export class NouveauClientFormComponent implements OnInit {
       }
       this.client.role = "ROLE_CLIENT"
       this.client.panier = this.panier;
-      console.log(this.client);
       this._cs.save(this.client).subscribe(() => {
         this._aus.signin(this.client.email, this.client.password).subscribe(() => {
           this._r.navigateByUrl("commande");

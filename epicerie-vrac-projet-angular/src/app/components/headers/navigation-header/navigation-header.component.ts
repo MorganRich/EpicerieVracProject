@@ -10,19 +10,18 @@ export class NavigationHeaderComponent implements OnInit {
 
   public route: UrlSegment[] = [];
   
-  constructor(
-    private _r: Router,
-    private _ar: ActivatedRoute
-  ) { }
+  constructor(private _r: Router,
+              private _ar: ActivatedRoute) { }
 
   ngOnInit(): void {
     this._ar.url.subscribe(r => {
       this.route = r;
     });
+    // TODO: Ne fonctionne pas !
   }
 
-  onBack() {
-    this._r.navigate([".."], {relativeTo: this._ar})
-  }
+  // onBack() {
+  //   this._r.navigate([".."], {relativeTo: this._ar})
+  // }
 
 }

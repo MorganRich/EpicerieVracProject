@@ -1,7 +1,9 @@
 <div class="formulaires">
     <form class="formulaire" #formulairePrincipal=ngForm>
         <h1>Détails de facturation</h1>
+
         <mat-divider></mat-divider>
+        
         <div>
             <mat-form-field appearance="fill">
                 <mat-label>Prenom</mat-label>
@@ -57,7 +59,9 @@
         <mat-checkbox [(ngModel)]="adresseDifferente" name="adresseDifferente">
             <h1>Expédier à une adresse différente ?</h1>
         </mat-checkbox>
+
         <mat-divider></mat-divider>
+
         <mat-form-field *ngIf="adresseDifferente" appearance="fill">
             <mat-label>Pays</mat-label>
             <input matInput disabled value="France" required>
@@ -85,8 +89,9 @@
         </mat-form-field>
     </form>
 </div>
+
 <div class="actionForm">
-    <button mat-raised-button color="primary"
-        [disabled]="!formulairePrincipal.valid || !formulaireAdresse.valid"
-        (click)="onEnregistrer()">Enregistrer</button>
+    <button mat-raised-button color="primary" [disabled]="!formulairePrincipal.valid || !formulaireAdresse.valid" (click)="onEnregistrer()">
+        Enregistrer
+    </button>
 </div>

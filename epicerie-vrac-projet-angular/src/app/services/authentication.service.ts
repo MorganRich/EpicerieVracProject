@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Client } from '../models/client';
-import { Utilisateur } from '../models/utilisateur';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +34,7 @@ export class AuthenticationService {
         }));
   }
 
-  signout() {
+  signout(): void {
     this.utilisateur = new Client();
     this.connected = false;
     this.connectedSubject.next(this.connected);

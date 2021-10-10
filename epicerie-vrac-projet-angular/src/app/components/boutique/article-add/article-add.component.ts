@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Article } from 'src/app/models/article';
 import { Categorie } from 'src/app/models/categorie';
 import { ArticleService } from 'src/app/services/article.service';
+import { UniteMesure } from "src/app/models/unite-mesure";
 
 @Component({
   selector: 'app-article-add',
@@ -14,28 +15,33 @@ export class ArticleAddComponent implements OnInit {
   public article: Article = new Article();
   public categories: Categorie[] = [];
   public image: string = "";
+  public uniteMesure: UniteMesure[] = [];
 
-  constructor(private _as: ArticleService) { }
+  constructor(private _as: ArticleService,
+              private _r: Router) { }
 
   ngOnInit(): void {
     this._as.findAllCategorie().subscribe(res => this.categories = res);
+    this.uniteMesure[0] = UniteMesure.KILO;
+    this.uniteMesure[1] = UniteMesure.LITRE;
+    this.uniteMesure[2] = UniteMesure.UNITE;
   }
 
-  onFileSelect(event: any) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.image = file;
-    }
-    else {
+  onFileSelect(event: any): void {
+    if (event.target.files.length > 0)
+      this.image = event.target.files[0];
+    else
       this.image = "";
-    }
   }
 
   onSubmit(): void {
     const formData = new FormData();
     formData.append('article', new Blob([JSON.stringify(this.article)], {type: 'application/json'}));
-    formData.append('file',  this.image);
-    this._as.save(formData).subscribe(() => "enregistrement OK");
+    formData.append('file', this.image);
+    this._as.save(formData).subscribe(() => {
+      console.log("Enregistrement OK");
+      this._r.navigateByUrl("boutique");
+    });
   }
 
 }

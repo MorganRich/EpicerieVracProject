@@ -1,4 +1,3 @@
-<!-- <mat-stepper class="stepper" [orientation]="(stepperOrientation | async)!"> -->
 <mat-horizontal-stepper class="stepper">
     <mat-step label="Détails de facturation">
         <mat-accordion *ngIf="utilisateur.role != 'ROLE_CLIENT'">
@@ -26,7 +25,6 @@
     </mat-step>
 
     <mat-step label="Votre commande">
-
         <app-commande-details></app-commande-details>
 
         <div class="btn-action">
@@ -37,7 +35,6 @@
     </mat-step>
 
     <mat-step label="Paiement">
-
         <app-paiement></app-paiement>
 
         <div class="btn-action">

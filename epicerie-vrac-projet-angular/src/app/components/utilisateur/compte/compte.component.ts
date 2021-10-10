@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Article } from 'src/app/models/article';
 import { Client } from 'src/app/models/client';
 import { Utilisateur } from 'src/app/models/utilisateur';
@@ -11,7 +11,7 @@ import { ClientService } from 'src/app/services/client.service';
   templateUrl: './compte.component.html',
   styleUrls: ['./compte.component.css']
 })
-export class CompteComponent implements OnInit {
+export class CompteComponent implements OnInit, OnDestroy {
 
   public utilisateur: Utilisateur = new Utilisateur();
   public client: Client = new Client();
@@ -28,6 +28,10 @@ export class CompteComponent implements OnInit {
       if (this.utilisateur.role = "ROLE_CLIENT")
         this._cs.findById(this.utilisateur.id).subscribe(c => this.client = c);
     });
+  }
+
+  ngOnDestroy(): void {
+    this._aus.utilisateurSubject.unsubscribe();
   }
 
   getUrlImage(article: Article): string {
