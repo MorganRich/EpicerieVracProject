@@ -33,7 +33,7 @@ export class ArticleDetailsDialogComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._aus.utilisateurSubject.unsubscribe();
+    // this._aus.utilisateurSubject.unsubscribe();
   }
 
   getUrlImage(): string {

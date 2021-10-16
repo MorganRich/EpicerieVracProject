@@ -15,7 +15,6 @@ import fr.formation.epicerievracprojet.models.Facture;
 import fr.formation.epicerievracprojet.models.LigneAchat;
 import fr.formation.epicerievracprojet.models.LigneAchat.LigneAchatId;
 import fr.formation.epicerievracprojet.models.Panier;
-import fr.formation.epicerievracprojet.repositories.AchatRepository;
 import fr.formation.epicerievracprojet.repositories.AdresseRepository;
 import fr.formation.epicerievracprojet.repositories.ClientRepository;
 import fr.formation.epicerievracprojet.repositories.CommandeRepository;
@@ -46,9 +45,6 @@ public class ClientService {
 	
 	@Autowired
 	private FactureRepository fr;
-	
-	@Autowired
-	private AchatRepository acr;
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	public Collection<Client> findAll() {

@@ -3,4 +3,5 @@ export interface PagingAndSortingConfig {
     pageSize: number;
     sortBy: string;
     sortOrder: string;
+    categorieId: number;
 }

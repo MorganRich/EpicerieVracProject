@@ -4,6 +4,7 @@ import { Article } from 'src/app/models/article';
 import { Categorie } from 'src/app/models/categorie';
 import { ArticleService } from 'src/app/services/article.service';
 import { UniteMesure } from "src/app/models/unite-mesure";
+import { CategorieService } from 'src/app/services/categorie.service';
 
 @Component({
   selector: 'app-article-add',
@@ -18,10 +19,11 @@ export class ArticleAddComponent implements OnInit {
   public uniteMesure: UniteMesure[] = [];
 
   constructor(private _as: ArticleService,
+              private _cs: CategorieService,
               private _r: Router) { }
 
   ngOnInit(): void {
-    this._as.findAllCategorie().subscribe(res => this.categories = res);
+    this._cs.findAll().subscribe(cat => this.categories = cat);
     this.uniteMesure[0] = UniteMesure.KILO;
     this.uniteMesure[1] = UniteMesure.LITRE;
     this.uniteMesure[2] = UniteMesure.UNITE;

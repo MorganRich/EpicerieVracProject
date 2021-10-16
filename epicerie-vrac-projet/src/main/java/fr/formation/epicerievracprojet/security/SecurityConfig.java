@@ -38,6 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			new AntPathRequestMatcher("/articles/*/upConsultation", "PUT"),
 			new AntPathRequestMatcher("/files/**", "GET"),
 			new AntPathRequestMatcher("/assets/**", "GET"),
+			new AntPathRequestMatcher("/categories", "GET"),
+			new AntPathRequestMatcher("/categories/**", "GET"),
 			new AntPathRequestMatcher("/fournisseurs", "GET"),
 			new AntPathRequestMatcher("/fournisseurs/**", "GET"));
 	
@@ -51,10 +53,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private final RequestMatcher ADMIN_URL = new OrRequestMatcher(
 			new AntPathRequestMatcher("/clients", "GET"),
 			new AntPathRequestMatcher("/clients/admin", "POST"),
-			new AntPathRequestMatcher("/articles/categories", "POST"),
 			new AntPathRequestMatcher("/articles", "POST"),
 			new AntPathRequestMatcher("/articles/**", "PUT"),
 			new AntPathRequestMatcher("/articles/**", "DELETE"),
+			new AntPathRequestMatcher("/categories", "POST"),
+			new AntPathRequestMatcher("/categories/**", "PUT"),
+			new AntPathRequestMatcher("/categories/**", "DELETE"),
 			new AntPathRequestMatcher("/fournisseurs", "POST"),
 			new AntPathRequestMatcher("/fournisseurs/**", "PUT"),
 			new AntPathRequestMatcher("/fournisseurs/**", "DELETE"));

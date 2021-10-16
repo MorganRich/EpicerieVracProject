@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccueilComponent } from './components/accueil/accueil.component';
 import { ArticleAddComponent } from './components/boutique/article-add/article-add.component';
 import { ArticleDetailsComponent } from './components/boutique/article-details/article-details.component';
 import { BoutiqueComponent } from './components/boutique/boutique/boutique.component';
@@ -12,7 +13,8 @@ import { AdminGuard } from './guards/admin.guard';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
 
 const routes: Routes = [
-  {path: "boutique", component: BoutiqueComponent},
+  {path: "accueil", component: AccueilComponent},
+  {path: "boutique/:categorieId", component: BoutiqueComponent},
   {path: "article/add", component: ArticleAddComponent, canActivate: [AdminGuard]},
   {path: "article/:id", component: ArticleDetailsComponent},
   {path: "panier", component: PanierComponent},
@@ -20,7 +22,7 @@ const routes: Routes = [
   {path: "paiement", component: PaiementComponent},
   {path: "connexion", component: ConnexionPageComponent},
   {path: "mon-compte", component: CompteComponent, canActivate: [AuthenticatedGuard]},
-  {path: "**", redirectTo: "/boutique"}
+  {path: "**", redirectTo: "/accueil"}
 ];
 
 @NgModule({

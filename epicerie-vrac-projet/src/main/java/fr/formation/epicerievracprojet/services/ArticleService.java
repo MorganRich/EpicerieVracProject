@@ -44,6 +44,19 @@ public class ArticleService {
 			return new ArrayList<Article>();
 	}
 	
+	public Collection<Article> findAllByCategories(Integer pageNo, Integer pageSize, String sortBy, String sortOrder, Integer categorieId) {
+		Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
+		if (sortOrder.equals("ascending"))
+			paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
+		
+		Page<Article> pagedResult = ar.findByCategories(cr.findById(categorieId).get(), paging);
+		
+		if(pagedResult.hasContent())
+			return pagedResult.getContent();
+		else
+			return new ArrayList<Article>();
+	}
+	
 	public Optional<Article> findById(int id) {
 		return ar.findById(id);
 	}

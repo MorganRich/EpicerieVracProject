@@ -27,6 +27,7 @@ import { DetailsClientComponent } from './components/utilisateur/details-client/
 import { CommandeDetailsComponent } from './components/boutique/commande/commande-details/commande-details.component';
 import { CompteComponent } from './components/utilisateur/compte/compte.component';
 import { PanierDetailsComponent } from './components/boutique/panier-details/panier-details.component';
+import { AccueilComponent } from './components/accueil/accueil.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { PanierDetailsComponent } from './components/boutique/panier-details/pan
     CommandeDetailsComponent,
     CompteComponent,
     PanierDetailsComponent,
+    AccueilComponent,
   ],
   imports: [
     BrowserModule,

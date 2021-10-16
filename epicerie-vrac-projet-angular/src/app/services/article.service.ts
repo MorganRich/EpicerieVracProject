@@ -20,11 +20,9 @@ export class ArticleService {
   }
 
   findAllWithPagingAndSorting(ps: PagingAndSortingConfig): Observable<Article[]> {
-    return this._hc.get<Article[]>(this._articlesUrl + "?pageSize=" + ps.pageSize + "&pageNo=" + ps.pageNo + "&sortBy=" + ps.sortBy + "&sortOrder=" + ps.sortOrder);
-  }
-
-  findAllCategorie(): Observable<Categorie[]> {
-    return this._hc.get<Categorie[]>(this._articlesUrl + "/categories");
+    return this._hc.get<Article[]>(this._articlesUrl + "?pageSize=" + ps.pageSize + "&pageNo=" + ps.pageNo + 
+                                                       "&sortBy=" + ps.sortBy + "&sortOrder=" + ps.sortOrder +
+                                                       "&categorieId=" + ps.categorieId);
   }
 
   findById(id: number): Observable<Article> {
